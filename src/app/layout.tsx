@@ -18,6 +18,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://bible-kings.vercel.app'),
   title: "Rois d'Israël et de Juda — Collection Interactive",
   description:
     "Découvrez les 43 rois d'Israël et de Juda à travers des cartes 3D interactives et des quiz gamifiés. Une expérience éducative et ludique.",
@@ -26,6 +27,21 @@ export const metadata: Metadata = {
     description:
       "Découvrez les 43 rois bibliques à travers des cartes 3D interactives et des quiz gamifiés.",
     type: 'website',
+    images: [
+      {
+        url: '/images/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: "Les rois d'Israël et de Juda — cartes interactives",
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Rois d'Israël et de Juda — Collection Interactive",
+    description:
+      "Découvrez les 43 rois bibliques à travers des cartes 3D interactives et des quiz gamifiés.",
+    images: ['/images/og-image.jpg'],
   },
   other: {
     'theme-color': '#3d2e1e',

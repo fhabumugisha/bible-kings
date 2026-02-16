@@ -84,7 +84,7 @@ export default function Hero() {
             </h1>
 
             <p className="font-inter font-light text-white/70 text-lg md:text-xl mb-5 max-w-2xl">
-              Découvrez les 43 souverains de l&apos;Ancien Testament à travers
+              Découvrez les 43 rois de l&apos;Ancien Testament à travers
               des cartes interactives
             </p>
 

@@ -36,6 +36,8 @@ export interface King {
   prophets: string[];
   faithfulness: number;
   keyFacts: KeyFact[];
+  explanation: string;
+  lesson: string;
   imagePath: string;
   imagePrompt: string;
 }

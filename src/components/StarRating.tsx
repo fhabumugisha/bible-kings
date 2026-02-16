@@ -6,10 +6,12 @@ import { StarIcon as StarOutline } from '@heroicons/react/24/outline'
 interface StarRatingProps {
   rating: number
   size?: 'sm' | 'md'
+  variant?: 'dark' | 'light'
 }
 
-export default function StarRating({ rating, size = 'sm' }: StarRatingProps) {
+export default function StarRating({ rating, size = 'sm', variant = 'dark' }: StarRatingProps) {
   const starSize = size === 'sm' ? 16 : 20
+  const emptyColor = variant === 'dark' ? 'text-white/40' : 'text-parchment-900/25'
 
   return (
     <div className="flex items-center gap-0.5" role="img" aria-label={`Fidélité : ${rating} sur 5`}>
@@ -22,7 +24,7 @@ export default function StarRating({ rating, size = 'sm' }: StarRatingProps) {
             key={star}
             width={starSize}
             height={starSize}
-            className={isFilled ? 'text-gold' : 'text-white/40'}
+            className={isFilled ? 'text-gold' : emptyColor}
           />
         )
       })}
