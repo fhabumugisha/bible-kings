@@ -1,0 +1,86 @@
+Task 14 : GitHub Packaging, Vercel Deployment, and OVH Custom Domain
+
+Initialize a GitHub repository, deploy the static export to Vercel, and connect a custom domain via OVH DNS configuration.
+
+CONTEXT FROM THE PRD
+
+The application uses output: 'export' in next.config.ts, producing a fully static site in the out/ directory. There is no backend, no API routes, and no server-side rendering. This means it can be deployed on any static hosting platform. Vercel is the chosen host because of its native Next.js integration and automatic static export detection. The custom domain is managed through OVH.
+
+WHAT TO BUILD
+
+1. GitHub repository setup:
+   Initialize git in the project root if not already done:
+   git init
+   Create a .gitignore file (or verify the one from create-next-app) that includes:
+   node_modules/
+   .next/
+   out/
+   .env*.local
+   *.tsbuildinfo
+   Stage all project files and create the initial commit:
+   git add -A
+   git commit -m "Initial commit: Kings of Israel interactive app"
+   Create a remote GitHub repository using the GitHub CLI:
+   gh repo create kings --public --source=. --remote=origin --push
+   If gh is not available, create the repository manually on github.com and add the remote:
+   git remote add origin https://github.com/USERNAME/kings.git
+   git push -u origin main
+
+2. Vercel deployment:
+   Connect the GitHub repository to Vercel. This can be done via the Vercel dashboard or the Vercel CLI:
+   Option A (dashboard): Go to vercel.com/new, import the kings repository from GitHub, and deploy.
+   Option B (CLI):
+   npm i -g vercel
+   vercel
+   Vercel should auto-detect the Next.js static export configuration. Verify the following settings in the Vercel project:
+   Framework Preset: Next.js
+   Build Command: next build (default)
+   Output Directory: out (Vercel detects this from output: 'export')
+   Install Command: npm install (default)
+   After the first deployment, verify the app is accessible at the generated .vercel.app URL.
+   Confirm that all pages load correctly (home page and /quiz).
+   Confirm that images, fonts, and styles load properly.
+   Subsequent deployments happen automatically on every push to main.
+
+3. OVH custom domain configuration:
+   In the Vercel dashboard, go to the project Settings then Domains.
+   Add the custom domain (e.g., rois-israel.fr or the domain the user owns).
+   Vercel will provide DNS records to configure. Typically:
+   For the apex domain (example.com):
+   Add an A record pointing to 76.76.21.21
+   For the www subdomain (www.example.com):
+   Add a CNAME record pointing to cname.vercel-dns.com
+   In the OVH Manager (ovh.com/manager):
+   Go to Web Cloud then Domain Names then select the domain.
+   Go to the DNS Zone tab.
+   Add the A record: Name @ , Target 76.76.21.21
+   Add the CNAME record: Name www , Target cname.vercel-dns.com.
+   Note the trailing dot after cname.vercel-dns.com. in OVH DNS zone.
+   Wait for DNS propagation (can take up to 24-48 hours, usually faster).
+   Back in the Vercel dashboard, verify the domain status shows "Valid Configuration".
+   Vercel automatically provisions a Let's Encrypt SSL certificate once DNS is verified.
+   Confirm the site loads over HTTPS at the custom domain.
+   Optionally set the custom domain as the production domain in Vercel project settings.
+
+DEPENDENCIES
+
+All previous tasks (01 through 13) must be completed. The app must build successfully with npm run build before deploying.
+
+WHAT OTHER TASKS NEED FROM THIS
+
+None. This is the deployment and packaging task that makes the app publicly accessible.
+
+SUCCESS CRITERIA
+
+A GitHub repository exists and contains all project files.
+The .gitignore properly excludes node_modules, .next, out, and local env files.
+The repository has at least one commit with all project code.
+The Vercel project is connected to the GitHub repository.
+Pushes to main trigger automatic deployments on Vercel.
+The app is accessible at the Vercel-generated URL (*.vercel.app).
+All pages (home and /quiz) load correctly on the deployed version.
+The custom domain is added in the Vercel dashboard.
+DNS records (A and CNAME) are configured in the OVH Manager.
+The custom domain resolves to the Vercel deployment.
+HTTPS is active on the custom domain (Let's Encrypt certificate provisioned).
+The deployed app matches the local build with no missing assets or broken links.

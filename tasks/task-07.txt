@@ -1,0 +1,61 @@
+Task 07 : CardGrid with Era Sections
+
+Build the CardGrid component that displays all 43 king cards organized into 3 era sections with headers, using a responsive grid layout. This also includes the era section header subcomponent.
+
+CONTEXT FROM THE PRD
+
+The cards are grouped into 3 sections: Monarchie Unie (3 cards, gold), Royaume du Nord Israel (19 cards, red), and Royaume du Sud Juda (21 cards, blue). Each section has a decorative header showing the era name, description, king count, and a colored band. The grid is responsive: 1 column on mobile, 2 on tablet, 3 on small desktop, 4 on large desktop.
+
+WHAT TO BUILD
+
+Create src/components/CardGrid.tsx. This can be a server component or client component depending on whether it needs to handle filtering (filtering state comes from the parent page, so it can receive filtered data as props).
+
+Props: kings (King array, possibly filtered), eras (Era array)
+
+1. Era Section Header (can be inline or a separate small component):
+   For each era, render a header block containing:
+   The era name in Cinzel font, large size (like text-2xl).
+   The era description in Inter font, smaller and muted color.
+   The king count (like "3 rois" or "19 rois").
+   The date range from the era data.
+   A decorative colored band/line at the top or left of the header, using the era's color (gold, red, or blue).
+   Use appropriate emojis: crown for united, sword for Israel, temple for Juda (matching the wireframe).
+
+2. Grid layout:
+   Each era section contains a CSS grid of KingCard components.
+   Responsive breakpoints using Tailwind:
+   Below 640px: 1 column, gap 24px, padding 16px
+   640px to 1023px: 2 columns, gap 24px, padding 24px
+   1024px to 1279px: 3 columns, gap 32px, padding 32px
+   1280px and above: 4 columns, gap 32px, padding 48px
+   Cards are centered within each grid cell.
+
+3. Rendering:
+   Iterate over ERAS. For each era, filter the kings array to get only kings matching that era's kingdom.
+   If the filtered result for an era is empty (due to filtering), skip rendering that era section entirely.
+   For each king in the filtered era group, render a KingCard.
+   Each KingCard gets an id attribute set to the king's ID so that parallel king links can scroll to it.
+
+4. Parallel king scroll behavior:
+   The onParallelKingClick callback for each KingCard should scroll smoothly to the target card's element. Use document.getElementById(parallelKingId) and scrollIntoView with behavior 'smooth' and block 'center'.
+
+5. Quiz click behavior:
+   The onQuizClick callback for each KingCard should open the QuizModal for that specific king. For now, since the QuizModal is built in task 11, just pass a placeholder callback or lift the state up to the page component that will handle it. The callback should receive the king's ID.
+
+DEPENDENCIES
+
+Task 06 (KingCard), Task 03 (KINGS and ERAS data), Task 02 (types).
+
+WHAT OTHER TASKS NEED FROM THIS
+
+Task 09 (Home Page Assembly) renders CardGrid as the main content area.
+
+SUCCESS CRITERIA
+
+CardGrid renders all 43 cards organized into 3 sections with visible era headers.
+Each era section header shows the era name, description, count, dates, and colored decoration.
+The grid is responsive: visually verify 1 column on narrow viewport, 2 on medium, 3 on desktop, 4 on large.
+Clicking a parallel king link on any card back scrolls smoothly to the correct king's card.
+Each era section only renders if it has kings to show (handles filtering gracefully).
+Each card element has an id attribute matching the king's ID.
+npm run build produces no errors.

@@ -1,0 +1,76 @@
+Task 09 : FilterBar and Home Page Assembly
+
+Build the filter bar component and assemble the complete home page by combining Header (in layout), Hero, FilterBar, and CardGrid with state management for filtering.
+
+CONTEXT FROM THE PRD
+
+The home page is the main view of the application. It shows the hero section at the top, then a filter bar, then the card grid with all 43 kings. The filter bar lets users filter by era (Tous/Monarchie Unie/Israel/Juda), by faithfulness level (Tous/Fideles/Infideles), and search by name. Filtering changes which cards are visible in the grid.
+
+WHAT TO BUILD
+
+1. Create src/components/FilterBar.tsx as a client component ('use client').
+
+   Props:
+   selectedEra: Kingdom or 'all'
+   selectedFaithfulness: 'all' or 'faithful' or 'unfaithful'
+   searchQuery: string
+   onEraChange: callback receiving Kingdom or 'all'
+   onFaithfulnessChange: callback receiving 'all', 'faithful', or 'unfaithful'
+   onSearchChange: callback receiving string
+
+   Layout:
+   A horizontal bar with three filter controls, wrapping on mobile.
+   Era filter: a set of pill buttons or a dropdown. Options: "Tous", "Monarchie Unie", "Israel (Nord)", "Juda (Sud)". The active option is visually highlighted with the corresponding era color.
+   Faithfulness filter: a dropdown or pill buttons. Options: "Tous", "Fideles (4+ etoiles)", "Infideles (2- etoiles)".
+   Search: a text input with a magnifying glass icon and placeholder "Rechercher un roi...". Filters as the user types (no submit button needed).
+   Style: subtle background (parchment-100), rounded corners, consistent with the parchment/biblical aesthetic.
+
+2. Modify src/app/layout.tsx to include the Header component. The Header should appear on every page, so it belongs in the root layout, rendered above the {children}.
+
+3. Create/modify src/app/page.tsx as the home page.
+
+   This is the main page component. It can be a client component since it manages filter state.
+
+   State:
+   selectedEra (default 'all')
+   selectedFaithfulness (default 'all')
+   searchQuery (default empty string)
+
+   Filtering logic:
+   Start with the full KINGS array from data/kings.ts.
+   If selectedEra is not 'all', filter to kings where kingdom matches.
+   If selectedFaithfulness is 'faithful', keep kings with faithfulness >= 4. If 'unfaithful', keep kings with faithfulness <= 2.
+   If searchQuery is not empty, keep kings whose name contains the search string (case insensitive).
+   Pass the filtered array to CardGrid.
+
+   Rendering order:
+   Hero component
+   FilterBar component (with filter state and callbacks)
+   CardGrid component (with filtered kings and ERAS)
+   Give the CardGrid section an id (like "card-grid") so the Hero's "Explorer les cartes" button can scroll to it.
+
+   QuizModal integration:
+   Manage a state for which king's quiz is currently open (kingId or null).
+   When a card's quiz button is clicked, set this state to the king's ID.
+   Render the QuizModal component conditionally when a kingId is set. Since QuizModal is built in task 11, for now just add the state management and pass a placeholder or skip the modal rendering. Add a comment indicating where the QuizModal will be integrated.
+
+DEPENDENCIES
+
+Task 07 (CardGrid), Task 08 (Header and Hero), Task 03 (KINGS and ERAS data).
+
+WHAT OTHER TASKS NEED FROM THIS
+
+Task 11 (QuizModal) will be integrated into this page's rendering.
+Task 13 (Polish) may refine the page layout.
+
+SUCCESS CRITERIA
+
+The home page renders correctly with Hero at top, FilterBar below it, and CardGrid with all 43 cards.
+The Header appears at the top of the page (from the layout) and stays sticky on scroll.
+Selecting "Israel (Nord)" in the era filter shows only the 19 northern kingdom cards.
+Selecting "Fideles" shows only kings with faithfulness 4 or 5.
+Typing "david" in the search field shows only the David card.
+Combining filters works (for example era "Juda" plus faithfulness "Fideles" shows Asa, Josaphat, Ozias, Jotham, Ezechias, Josias).
+Clearing all filters shows all 43 cards again.
+The page is responsive and looks good on mobile (1 column) through large desktop (4 columns).
+npm run build produces no errors.

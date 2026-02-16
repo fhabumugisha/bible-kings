@@ -1,0 +1,82 @@
+Task 02 : TypeScript Types and Data Model
+
+Create all TypeScript interfaces and types that define the data model for the entire application. This file is the single source of truth for data shapes used by every component, the quiz engine, and the state store.
+
+CONTEXT FROM THE PRD
+
+The app has 43 kings organized into 3 eras (united monarchy, northern kingdom Israel, southern kingdom Judah). Each king has structured data including biblical references, reign duration, parallel kings, prophets, faithfulness rating (0 to 5), and key facts with categories. The quiz system has 4 question types. Progression is tracked per king and per quiz session.
+
+WHAT TO BUILD
+
+Create the file src/types/index.ts with the following type definitions. Export every type and interface.
+
+1. Kingdom type: a union of the string literals 'united', 'israel', and 'judah'.
+
+2. FactCategory type: a union of 'identity', 'achievement', 'sin', 'death', 'construction', 'battle', and 'prophet'. This is used to generate relevant quiz distractors by matching facts in the same category.
+
+3. Era interface with these fields:
+   id of type Kingdom
+   label of type string (example: "Monarchie Unie")
+   description of type string (example: "Le royaume unifie sous trois rois")
+   dates of type string (example: "~1050 to 930 av. J.-C.")
+   color of type string (Tailwind class or hex value)
+   kingCount of type number
+
+4. King interface with these fields:
+   id of type string (slug in kebab-case, example: "saul", "jeroboam-i")
+   name of type string (display name in French)
+   number of type number (position number within its era category)
+   kingdom of type Kingdom
+   biblicalReference of type string
+   reignDuration of type string (human readable, like "40 ans" or "7 jours")
+   reignYears of type string (approximate dates like "~1050 to 1010 av. J.-C.")
+   parallelKing of type string or null (ID of the parallel king, or null if none)
+   prophets of type string array
+   faithfulness of type number (0 to 5)
+   keyFacts of type KeyFact array (exactly 5 facts per king)
+   imagePath of type string (path to the portrait image like "/images/kings/saul.webp")
+   imagePrompt of type string (the AI prompt used to generate the portrait)
+
+5. KeyFact interface:
+   emoji of type string
+   text of type string
+   category of type FactCategory
+
+6. QuizQuestion interface:
+   id of type string (unique within a quiz session)
+   type of type union: 'identification', 'facts', 'prophet', 'faithfulness'
+   question of type string
+   options of type string array (exactly 4 choices)
+   correctIndex of type number (0 to 3)
+   explanation of type string (with biblical reference)
+   kingId of type string
+
+7. QuizConfig interface:
+   category of type Kingdom or the literal 'all'
+   questionCount of type the union 5, 10, or 20
+
+8. QuizState interface:
+   config of type QuizConfig
+   questions of type QuizQuestion array
+   currentIndex of type number
+   answers of type array of (number or null), representing the index chosen by the user for each question
+   isComplete of type boolean
+
+DEPENDENCIES
+
+Task 01 must be completed first (project must exist with TypeScript configured).
+
+WHAT OTHER TASKS NEED FROM THIS
+
+Task 03 (Kings Data) imports King, KeyFact, Era, Kingdom, and FactCategory.
+Task 04 (Progress Store) needs to reference king IDs and quiz structures.
+Task 05 (Card Components) imports King and Era for props.
+Task 10 (Quiz Engine) imports QuizQuestion, QuizConfig, QuizState, and FactCategory.
+Task 11 (Quiz Hook and Modal) imports QuizState and QuizQuestion.
+
+SUCCESS CRITERIA
+
+The file src/types/index.ts exists and exports all 8 types/interfaces listed above.
+Running npm run build produces no TypeScript errors.
+Every field described above is present with the correct type.
+The file contains no runtime code, only type definitions.

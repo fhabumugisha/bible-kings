@@ -1,0 +1,57 @@
+[  914385ms] [WARNING] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}. @ http://localhost:3000/_next/static/chunks/120e5_next_dist_8092394d._.js:2297
+[  914431ms] [WARNING] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}. @ http://localhost:3000/_next/static/chunks/120e5_next_dist_8092394d._.js:2297
+[  914874ms] Error: Maximum update depth exceeded. This can happen when a component repeatedly calls setState inside componentWillUpdate or componentDidUpdate. React limits the number of nested updates to prevent infinite loops.
+    at getRootForUpdatedFiber (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:2997:171)
+    at enqueueConcurrentHookUpdate (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:2981:16)
+    at dispatchSetStateInternal (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:5673:22)
+    at dispatchSetState (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:5646:9)
+    at usePresence.useCallback (http://localhost:3000/_next/static/chunks/120e5_70b7ba4d._.js:2198:17)
+    at setRef (http://localhost:3000/_next/static/chunks/120e5_70b7ba4d._.js:706:16)
+    at http://localhost:3000/_next/static/chunks/120e5_70b7ba4d._.js:715:29
+    at Array.map (<anonymous>)
+    at http://localhost:3000/_next/static/chunks/120e5_70b7ba4d._.js:714:31
+    at setRef (http://localhost:3000/_next/static/chunks/120e5_70b7ba4d._.js:706:16)
+    at http://localhost:3000/_next/static/chunks/120e5_70b7ba4d._.js:715:29
+    at Array.map (<anonymous>)
+    at http://localhost:3000/_next/static/chunks/120e5_70b7ba4d._.js:714:31
+    at runWithFiberInDEV (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:965:74)
+    at safelyDetachRef (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:7396:37)
+    at commitMutationEffectsOnFiber (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8296:82)
+    at recursivelyTraverseMutationEffects (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8212:106)
+    at commitMutationEffectsOnFiber (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8221:17)
+    at recursivelyTraverseMutationEffects (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8212:106)
+    at commitMutationEffectsOnFiber (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8221:17)
+    at recursivelyTraverseMutationEffects (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8212:106)
+    at commitMutationEffectsOnFiber (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8221:17)
+    at recursivelyTraverseMutationEffects (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8212:106)
+    at commitMutationEffectsOnFiber (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8221:17)
+    at recursivelyTraverseMutationEffects (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8212:106)
+    at commitMutationEffectsOnFiber (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8221:17)
+    at recursivelyTraverseMutationEffects (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8212:106)
+    at commitMutationEffectsOnFiber (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8221:17)
+    at recursivelyTraverseMutationEffects (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8212:106)
+    at commitMutationEffectsOnFiber (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8221:17)
+    at recursivelyTraverseMutationEffects (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8212:106)
+    at commitMutationEffectsOnFiber (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8221:17)
+    at recursivelyTraverseMutationEffects (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8212:106)
+    at commitMutationEffectsOnFiber (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8221:17)
+    at recursivelyTraverseMutationEffects (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8212:106)
+    at commitMutationEffectsOnFiber (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8221:17)
+    at recursivelyTraverseMutationEffects (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8212:106)
+    at commitMutationEffectsOnFiber (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8221:17)
+    at recursivelyTraverseMutationEffects (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8212:106)
+    at commitMutationEffectsOnFiber (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8347:17)
+    at recursivelyTraverseMutationEffects (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8212:106)
+    at commitMutationEffectsOnFiber (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8221:17)
+    at recursivelyTraverseMutationEffects (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8212:106)
+    at commitMutationEffectsOnFiber (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8221:17)
+    at recursivelyTraverseMutationEffects (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8212:106)
+    at commitMutationEffectsOnFiber (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8410:17)
+    at recursivelyTraverseMutationEffects (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8212:106)
+    at commitMutationEffectsOnFiber (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8221:17)
+    at recursivelyTraverseMutationEffects (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8212:106)
+    at commitMutationEffectsOnFiber (http://localhost:3000/_next/static/chunks/120e5_next_dist_compiled_react-dom_7622449b._.js:8221:17)
+[ 1042957ms] [ERROR] The final argument passed to %s changed size between renders. The order and size of this array must remain constant.
+
+Previous: %s
+Incoming: %s useEffect [false, , 0, [object Object]] [false, ] @ http://localhost:3000/_next/static/chunks/120e5_next_dist_8092394d._.js:3127

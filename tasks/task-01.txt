@@ -1,0 +1,64 @@
+Task 01 : Project Setup and Foundation
+
+Initialize the Next.js project with all required dependencies, configuration files, and fonts. This is the foundational task that every other task depends on.
+
+CONTEXT FROM THE PRD
+
+This application is a static web app (no backend, no auth, no database) that presents 43 biblical kings as interactive 3D trading cards with a quiz system. It targets French-speaking users aged 15 to 35. The stack is Next.js 16 with App Router, React 19, TypeScript strict mode, Tailwind CSS v4 (CSS-first config), Motion (formerly Framer Motion), Zustand for state, and Radix Dialog for modals.
+
+WHAT TO BUILD
+
+1. Run this exact command to scaffold the project:
+   npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --turbopack
+   Since we are already in the kings/ directory and PRD.md exists, make sure not to overwrite it. If create-next-app refuses to run in a non-empty directory, move PRD.md and kings-descriptions.md aside temporarily, scaffold, then move them back.
+
+2. Install additional dependencies:
+   npm install motion zustand @radix-ui/react-dialog @heroicons/react
+
+3. Configure next.config.ts for static export:
+   Set output to 'export' and images.unoptimized to true. This is required because the app will be deployed as static files on a CDN with no Node server.
+
+4. Configure postcss.config.mjs with the @tailwindcss/postcss plugin (this replaces the old tailwind.config.ts approach since we use Tailwind v4).
+
+5. Set up src/app/globals.css with Tailwind v4 CSS-first configuration:
+   Use @import "tailwindcss" at the top.
+   Define a @theme block with these custom design tokens:
+   Parchment colors: parchment-50 (#fefdfb), parchment-100 (#fdf8f0), parchment-200 (#f5e6d0), parchment-300 (#e8d5b8), parchment-900 (#3d2e1e)
+   Era colors: era-united (#d4a017), era-israel (#c0392b), era-judah (#2c3e8f)
+   UI colors: gold (#d4a017), gold-light (#f5deb3), success (#27ae60), scroll (#8b7355)
+   Font families: cinzel ('Cinzel', serif), inter ('Inter', sans-serif)
+   Do NOT create a tailwind.config.ts file. Tailwind v4 does not need one.
+
+6. Set up src/app/layout.tsx as the root layout:
+   Import Cinzel (weights 400, 600, 700) and Inter (weights 400, 600) from next/font/google.
+   Apply the fonts as CSS variables (for example --font-cinzel and --font-inter) on the html element so Tailwind can reference them.
+   Set the lang attribute to "fr" on the html tag.
+   Add metadata: title "Rois d'Israel et de Juda" and a description about discovering the 43 kings through interactive cards.
+   Apply a base background of parchment-50 and text color of parchment-900 on the body.
+
+7. Create the placeholder directory structure:
+   public/images/kings/ (empty for now, portraits will be added later)
+   src/components/ (empty directory)
+   src/data/ (empty directory)
+   src/stores/ (empty directory)
+   src/lib/ (empty directory)
+   src/hooks/ (empty directory)
+   src/types/ (empty directory)
+
+DEPENDENCIES
+
+None. This is the first task.
+
+WHAT OTHER TASKS NEED FROM THIS
+
+Every subsequent task depends on this one. Task 02 needs the types directory. Task 03 needs the data directory. Task 04 needs the stores directory. Tasks 05 through 13 need the full project to compile and the design tokens to be available.
+
+SUCCESS CRITERIA
+
+Running npm run dev starts the development server without errors.
+Running npm run build completes without errors and produces a static export in the out/ directory.
+The browser shows a page with the correct parchment background color.
+The Cinzel and Inter fonts load correctly (inspect the rendered HTML to confirm the font CSS variables are present).
+The globals.css file uses @import "tailwindcss" and @theme (not the old v3 @tailwind directives).
+There is no tailwind.config.ts or tailwind.config.js file.
+The postcss.config.mjs uses @tailwindcss/postcss.

@@ -1,0 +1,95 @@
+Task 11 : Quiz Hook and QuizModal Component
+
+Build the useQuiz custom hook for managing quiz state, and the QuizModal component that shows a per-card quiz in a Radix Dialog modal overlay.
+
+CONTEXT FROM THE PRD
+
+When a user clicks "Tester mes connaissances" on the back of a king card, a modal overlay appears with 3 to 4 questions about that specific king. The modal uses Radix Dialog for built-in accessibility (focus trap, ARIA attributes, Escape to close, click outside to close). After answering, the user gets immediate visual feedback (green for correct, red for incorrect) plus an explanation with a biblical reference. At the end, a score summary is shown.
+
+WHAT TO BUILD
+
+1. Create src/hooks/useQuiz.ts
+
+   This is a custom React hook that manages the state of an active quiz session.
+
+   Input: questions (QuizQuestion array)
+
+   Returned state and actions:
+   currentQuestion: the current QuizQuestion object
+   currentIndex: the current question number (0-based)
+   totalQuestions: total number of questions
+   selectedAnswer: the index the user selected for the current question, or null if not yet answered
+   isAnswered: whether the current question has been answered
+   isCorrect: whether the selected answer is correct (only meaningful if isAnswered is true)
+   isComplete: whether all questions have been answered
+   score: number of correct answers so far
+   answers: array of all user answers (index selected or null)
+
+   Actions:
+   selectAnswer(optionIndex: number): records the user's answer for the current question. Does nothing if already answered.
+   nextQuestion(): advances to the next question. Does nothing if the current question has not been answered yet, or if the quiz is already complete.
+   reset(): resets the quiz to the beginning with all answers cleared.
+
+2. Create src/components/QuizModal.tsx as a client component ('use client').
+
+   Props:
+   kingId (string): the ID of the king for this quiz
+   isOpen (boolean): controls whether the dialog is open
+   onClose (callback): called when the user closes the modal
+
+   Behavior:
+   When isOpen becomes true, call generateCardQuiz(kingId) from lib/quiz.ts to get the questions.
+   Use the useQuiz hook with these questions.
+   Use Radix Dialog components: Dialog.Root, Dialog.Portal, Dialog.Overlay, Dialog.Content, Dialog.Title, Dialog.Close.
+   The overlay is a semi-transparent dark backdrop.
+   The content panel is centered, max width around 500px, with padding and rounded corners.
+
+   Quiz flow inside the modal:
+   Header: "Quiz \u2014 {king name}" with a close button (X).
+   Progress: "Question {currentIndex + 1} / {totalQuestions}" and a progress bar.
+   Question text in Cinzel font.
+   4 option buttons (A, B, C, D) stacked vertically, full width.
+   Before answering: all buttons have the same neutral style.
+   After answering: the correct option turns green (bg-success), the wrong selected option turns red if the user chose incorrectly. Other options are dimmed.
+   After answering: show the explanation text below the options with a book emoji and the biblical reference.
+   A "Question suivante" button appears after answering (disabled or hidden before).
+   When the quiz is complete, show a results summary: score as "X / Y", a congratulatory message based on the score, and a "Fermer" button.
+
+   Score recording:
+   When the quiz completes, call recordScore on the progress store with quizId "card-{kingId}", the score, and total questions.
+
+   Animations:
+   Modal entrance: fade in the overlay, scale the content from 0.95 to 1. Use Motion or CSS transitions.
+   Correct answer: brief green flash with a subtle scale bounce.
+   Wrong answer: brief red flash with a horizontal shake.
+   Use AnimatePresence from "motion/react" for smooth transitions.
+
+3. Integrate QuizModal into the home page (src/app/page.tsx):
+   Add state for the currently active quiz king ID (string or null).
+   When a card's quiz button is clicked, set this state.
+   Render QuizModal with isOpen={quizKingId !== null}, kingId={quizKingId}, and onClose that sets the state back to null.
+
+DEPENDENCIES
+
+Task 10 (quiz generation engine), Task 04 (progress store), Task 09 (home page where the modal is rendered).
+Radix Dialog must be installed (done in task 01).
+
+WHAT OTHER TASKS NEED FROM THIS
+
+Task 12 (Quiz Page) reuses the useQuiz hook.
+The home page integration makes the per-card quiz fully functional.
+
+SUCCESS CRITERIA
+
+Clicking "Tester mes connaissances" on any card's back face opens the QuizModal.
+The modal shows 3 to 4 questions about the specific king.
+Clicking an answer option shows immediate green/red feedback.
+The explanation with biblical reference appears after each answer.
+"Question suivante" advances to the next question.
+After the last question, a results summary appears with the score.
+The score is saved to the Zustand store.
+Pressing Escape or clicking outside the modal closes it.
+The close button (X) closes the modal.
+Focus is trapped inside the modal when open (Radix Dialog handles this).
+The modal works on mobile (touch-friendly button sizes, scrollable if needed).
+npm run build produces no errors.

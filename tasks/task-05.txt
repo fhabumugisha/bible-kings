@@ -1,0 +1,65 @@
+Task 05 : StarRating, CardFront, and CardBack Components
+
+Build the three presentational components that make up the visual content of each king card. These are the building blocks used by KingCard (task 06).
+
+CONTEXT FROM THE PRD
+
+Each king card has two faces. The front shows the portrait image, king name with crown emoji, reign duration badge, number badge, star rating, and a colored border based on the era. The back shows biblical reference, reign duration, parallel king link, prophets, star rating with label, 5 key facts with emojis, and a quiz button. The card ratio is 2:3, max width 320px, min width 260px, border-radius 16px.
+
+WHAT TO BUILD
+
+All component files go in src/components/. Each must be a client component ('use client') since they will be used inside the animated KingCard.
+
+1. StarRating.tsx
+
+   Props: rating (number 1 to 5), size (optional, 'sm' or 'md', default 'sm')
+   Renders a row of 5 star icons. Filled stars use StarIcon from @heroicons/react/24/solid and empty stars use StarIcon from @heroicons/react/24/outline. Filled stars are colored gold (#d4a017). Empty stars are a muted gray.
+   Add aria-label with the text "Fidelite : X sur 5" where X is the rating number.
+   The 'sm' size uses 16px stars and 'md' uses 20px stars.
+
+2. CardFront.tsx
+
+   Props: king (King type from types/index.ts), isViewed (boolean, whether the user has already discovered this card)
+   Layout (within the 2:3 ratio card face):
+   Top left corner: a circular badge with the king's number (like "#1"). White text on a semi-transparent dark background.
+   Top right corner: StarRating component showing the king's faithfulness.
+   Center: the king's portrait image using next/image. Source is king.imagePath. Alt text is "Portrait de {king.name}". Use a fallback to "/images/kings/placeholder.webp" with onError. The image fills about 70% of the card height.
+   Bottom: a gradient overlay (transparent to dark) sits over the bottom of the image. On top of the gradient, show the king name with the crown emoji (use the queen emoji for Athalie whose id is 'athalie'). Below the name, show the reign duration in smaller text.
+   If isViewed is true, show a small checkmark badge in the top left area (near the number).
+   The entire face has a colored border: gold for 'united', red (#c0392b) for 'israel', blue (#2c3e8f) for 'judah'. Border is 3px solid.
+   Card has rounded corners (border-radius 16px) and a box shadow.
+   Use Tailwind classes for styling. Use the custom colors defined in globals.css via the @theme block (like bg-era-united, border-era-israel, etc).
+   Background color of the card face itself should be parchment-200.
+
+3. CardBack.tsx
+
+   Props: king (King type), onQuizClick (callback function with no arguments), onParallelKingClick (callback that receives the parallel king ID string, optional if parallelKing is null)
+   Layout (scrollable if content overflows):
+   Top section: biblical reference with book emoji, reign duration with hourglass emoji, parallel king name with crown emoji (clickable, calls onParallelKingClick), prophets with dove emoji.
+   Middle section: StarRating (medium size) with a text label next to it. The label maps faithfulness to a word: 1 means "Infidele", 2 means "Mitige", 3 means "Variable", 4 means "Fidele", 5 means "Exemplaire".
+   A horizontal separator line.
+   Facts section: heading "Faits marquants" with the pin emoji, then 5 items each showing their emoji and text.
+   Bottom: a prominent button with the target emoji saying "Tester mes connaissances". Clicking it calls onQuizClick. The button should have a gold background, dark text, rounded corners, and a slight hover effect.
+   Same colored border and rounded corners as the front face.
+   Background color parchment-100.
+   Use font-cinzel for the king name and section headers, font-inter for body text.
+
+DEPENDENCIES
+
+Task 01 (project setup with Tailwind and Heroicons), Task 02 (types), and Task 03 (kings data) must be completed.
+
+WHAT OTHER TASKS NEED FROM THIS
+
+Task 06 (KingCard) imports and renders CardFront and CardBack as the two faces of the 3D flip.
+Task 07 (CardGrid) indirectly depends on these through KingCard.
+
+SUCCESS CRITERIA
+
+All three component files exist in src/components/.
+StarRating renders 5 stars with the correct number filled based on the rating prop.
+CardFront renders the king portrait, name, number badge, stars, reign duration, and colored border.
+CardBack renders all data fields, the facts list, and the quiz button.
+The quiz button calls onQuizClick when clicked.
+The parallel king name is clickable and calls onParallelKingClick with the correct ID.
+The components use Tailwind classes and the custom theme colors.
+npm run build produces no errors.

@@ -1,0 +1,54 @@
+Task 08 : Header and Hero Components
+
+Build the sticky navigation header and the hero section that sits at the top of the home page. The header appears on all pages. The hero is specific to the home page.
+
+CONTEXT FROM THE PRD
+
+The header is a sticky navigation bar at the top of every page. It shows the app logo/title, a link to the quiz page, and a progress counter showing how many kings the user has discovered. The hero section is the first thing users see on the home page, with a title, description, progress bar, and call-to-action buttons.
+
+WHAT TO BUILD
+
+1. Create src/components/Header.tsx as a client component ('use client') since it reads from the Zustand progress store.
+
+   Layout:
+   Sticky at the top of the viewport (position sticky, top 0, z-index high).
+   Background: parchment-50 with a subtle bottom border or shadow for separation.
+   Left side: the app title "Rois d Israel" with a crown emoji, in Cinzel font. This is a link back to the home page (/).
+   Right side: a badge showing "X / 43" with a crown emoji where X is the number of kings viewed (from useProgressStore, kingsViewed.length). Next to it, a link or button labeled "Quiz" that navigates to /quiz.
+   The header should be responsive: on mobile, the title can be shorter ("Rois" instead of "Rois d Israel") and the elements should not wrap to a second line.
+   Use Next.js Link component for navigation.
+
+2. Create src/components/Hero.tsx as a client component ('use client') since it reads from the Zustand progress store.
+
+   Layout:
+   Full width section with vertical centering and generous padding.
+   Background: a subtle gradient or the parchment-100 color.
+   Title: "LES ROIS D ISRAEL ET DE JUDA" in Cinzel font, large (text-3xl on mobile, text-4xl/5xl on desktop).
+   Subtitle: "Decouvrez les 43 souverains de l Ancien Testament a travers des cartes interactives" in Inter font.
+   Progress bar: a horizontal bar showing the percentage of kings discovered. Use the kingsViewed.length from the progress store divided by 43. The bar should animate its width using a CSS transition or Motion. Show the percentage text next to it (like "28% decouverts").
+   Two CTA buttons side by side:
+   "Explorer les cartes" (primary, gold background, scrolls down to the card grid)
+   "Lancer un quiz" (secondary, outlined style, navigates to /quiz)
+   The "Explorer les cartes" button should smooth scroll to the card grid section. Use an anchor link or an onClick handler with scrollIntoView.
+
+DEPENDENCIES
+
+Task 01 (project setup, fonts, Tailwind), Task 04 (Zustand progress store).
+
+WHAT OTHER TASKS NEED FROM THIS
+
+Task 09 (Home Page Assembly) renders Header in the layout and Hero at the top of page.tsx.
+The Header is also used on the quiz page (task 12) via the root layout.
+
+SUCCESS CRITERIA
+
+Header.tsx renders a sticky bar at the top with the app title, quiz link, and progress counter.
+The progress counter shows the real number from the Zustand store (starts at "0 / 43" for a new user).
+Clicking the title navigates to /.
+Clicking "Quiz" navigates to /quiz.
+Hero.tsx renders the title, subtitle, animated progress bar, and two CTA buttons.
+The "Explorer les cartes" button scrolls down smoothly.
+The "Lancer un quiz" button navigates to /quiz.
+The progress bar width animates when the count changes.
+Both components are responsive and look good on mobile and desktop.
+npm run build produces no errors.

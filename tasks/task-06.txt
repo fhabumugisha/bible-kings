@@ -1,0 +1,74 @@
+Task 06 : KingCard 3D Flip Component
+
+Build the core interactive card component that orchestrates the 3D flip animation between CardFront and CardBack using the Motion library. This is the most visually important component in the application.
+
+CONTEXT FROM THE PRD
+
+The card flip is the central interaction of the app. Users click or tap a card to flip it with a 3D spring animation, revealing the educational content on the back. The flip uses CSS 3D transforms orchestrated by Motion (imported from "motion/react", NOT from "framer-motion"). The first time a card is flipped, it gets recorded as "discovered" in the Zustand progress store.
+
+WHAT TO BUILD
+
+Create src/components/KingCard.tsx as a client component ('use client').
+
+Props: king (King type), onQuizClick (callback), onParallelKingClick (callback receiving king ID string)
+
+1. State management:
+   Use a local useState for isFlipped (boolean, starts false).
+   Read from the Zustand progress store (useProgressStore) to check if this king has been viewed.
+   When the card is flipped for the first time (isFlipped goes from false to true and the king has not been viewed yet), call markViewed(king.id) on the progress store.
+
+2. 3D flip animation using Motion:
+   Import motion from "motion/react".
+   The card container needs CSS perspective set to 800px.
+   The card itself has two faces positioned absolutely on top of each other with backface-visibility hidden.
+   The front face has rotateY(0) when not flipped and rotateY(180) when flipped.
+   The back face has rotateY(180) when not flipped and rotateY(0) when flipped (pre-rotated so it shows correctly when the card flips).
+   Use motion.div with animate prop to control rotateY.
+   The spring animation config: stiffness 300, damping 40. This gives a satisfying flip that takes about 0.6 seconds.
+   Use transformStyle 'preserve-3d' on the card wrapper.
+
+3. Hover effect (desktop only):
+   On hover, the card lifts slightly: translateY(-4px) and the box shadow intensifies.
+   Duration 0.2 seconds, ease-out.
+   Use the whileHover prop from Motion or CSS transitions.
+
+4. Click/tap handling:
+   Clicking anywhere on the card toggles isFlipped.
+   The card must be keyboard accessible: role="button", tabIndex={0}, onKeyDown handler for Enter and Space keys (both toggle the flip).
+   Add aria-label "Carte de {king.name}, cliquer pour retourner" and aria-pressed={isFlipped}.
+
+5. Reduced motion support:
+   Use the useReducedMotion hook from Motion (or check window.matchMedia for prefers-reduced-motion).
+   When reduced motion is preferred, skip the spring animation and flip instantly.
+
+6. Card sizing:
+   The card ratio is 2:3 (width to height). Use aspect-ratio CSS or calculate height from width.
+   Max width 320px, min width 260px.
+   The card should be centered in its grid cell.
+
+7. Rendering:
+   Render CardFront on the front face, passing king and isViewed.
+   Render CardBack on the back face, passing king, onQuizClick, and onParallelKingClick.
+   Make sure click events on the quiz button and parallel king link on the back face do NOT also trigger a flip. Use event.stopPropagation() in CardBack's button handlers.
+
+DEPENDENCIES
+
+Task 01 (Motion library installed), Task 02 (types), Task 04 (progress store), Task 05 (CardFront and CardBack components).
+
+WHAT OTHER TASKS NEED FROM THIS
+
+Task 07 (CardGrid) renders a KingCard for each king.
+
+SUCCESS CRITERIA
+
+Clicking a card flips it with a smooth 3D animation.
+The animation uses spring physics (not linear or ease).
+Clicking the same card again flips it back.
+The first flip of each card marks it as viewed in the progress store.
+Subsequent flips of the same card do not add duplicate entries.
+The card is keyboard accessible (Enter and Space trigger flip).
+Hover on desktop lifts the card slightly.
+The quiz button on the back face opens the quiz without flipping the card back.
+The parallel king link on the back face calls onParallelKingClick without flipping.
+With prefers-reduced-motion enabled, the flip is instant.
+npm run build produces no errors.

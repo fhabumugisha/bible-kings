@@ -1,0 +1,52 @@
+Task 04 : Zustand Progress Store
+
+Create the Zustand state management store with localStorage persistence for tracking which kings the user has discovered (flipped) and their quiz scores.
+
+CONTEXT FROM THE PRD
+
+The app tracks two things persistently across sessions using localStorage: (1) which king cards the user has flipped (discovered), and (2) best quiz scores per quiz session. This data drives the progression UI (counter in the header, progress bar in the hero, checkmark badges on cards, best scores on quiz results). Zustand with the persist middleware handles this.
+
+WHAT TO BUILD
+
+Create the file src/stores/useProgressStore.ts.
+
+1. Import create from 'zustand' and persist from 'zustand/middleware'.
+
+2. Define the ProgressState interface with these fields:
+   kingsViewed: an array of strings (king IDs that have been flipped at least once)
+   quizScores: a Record mapping quiz IDs (strings) to objects with bestScore (number), totalQuestions (number), and lastPlayed (string, an ISO date)
+
+3. Define these actions in the same interface:
+   markViewed(kingId: string): void - adds the king ID to kingsViewed if not already present. Use a Set to deduplicate.
+   recordScore(quizId: string, score: number, total: number): void - saves the score, keeping only the best score if the quiz was played before. Sets lastPlayed to new Date().toISOString().
+   resetProgress(): void - clears all data back to empty arrays and objects.
+
+4. Create and export the store using create with the persist middleware wrapper:
+   The persist storage key should be 'kings-progress'.
+   Add an onRehydrateStorage handler that logs a warning if hydration fails (this handles Safari Private Mode and full localStorage gracefully).
+
+5. Since this store uses localStorage and will only work on the client side, make sure the store itself does not cause SSR issues. Zustand with persist handles this naturally because the persist middleware defers hydration to the client, but note that any component reading from this store must be a client component (marked with 'use client').
+
+DEPENDENCIES
+
+Task 01 (project setup with Zustand installed) must be completed.
+
+WHAT OTHER TASKS NEED FROM THIS
+
+Task 06 (KingCard) calls markViewed when a card is flipped for the first time.
+Task 08 (Header) reads kingsViewed.length to display the discovery counter.
+Task 09 (Hero within the home page) reads kingsViewed to show the progress bar.
+Task 11 (QuizModal) calls recordScore after completing a card quiz.
+Task 12 (Quiz Page) calls recordScore after completing the global quiz and displays bestScore.
+
+SUCCESS CRITERIA
+
+The file src/stores/useProgressStore.ts exists and exports useProgressStore.
+Calling markViewed('david') adds 'david' to kingsViewed.
+Calling markViewed('david') twice does not create duplicates.
+Calling recordScore('quiz-all-10', 8, 10) stores the score.
+Calling recordScore('quiz-all-10', 6, 10) after the previous call keeps 8 as bestScore (does not downgrade).
+Calling recordScore('quiz-all-10', 9, 10) after that updates bestScore to 9.
+Calling resetProgress() empties everything.
+The store persists to localStorage under the key 'kings-progress'.
+npm run build produces no errors.

@@ -1,0 +1,78 @@
+Task 10 : Quiz Question Generation Engine
+
+Build the quiz engine that dynamically generates questions from the kings data. This is the algorithmic core of the quiz feature, supporting 4 different question types with smart distractor selection.
+
+CONTEXT FROM THE PRD
+
+The quiz has 4 question types: (1) Identification by key fact - "which king did X?", (2) Fact association - "which of these facts is about king X?", (3) Prophet-king association - "which prophet was contemporary of king X?", (4) Faithfulness rating - "how is king X rated?". Questions are generated dynamically from the KINGS data. Distractors (wrong answers) should preferably come from the same era for types 1 and 2. The FactCategory on each key fact helps select relevant distractors.
+
+WHAT TO BUILD
+
+Create src/lib/quiz.ts. Import types from types/index.ts and data from data/kings.ts.
+
+1. Helper function: shuffleArray(array) that returns a new randomly shuffled copy of the array using the Fisher-Yates algorithm.
+
+2. Helper function: pickRandom(array, count) that picks count random elements from the array without duplicates.
+
+3. Question generator for Type 1 (Identification by fact):
+   Pick a random king from the pool. Pick one of their key facts.
+   The question text is: "Quel roi {fact text adapted as a relative clause}?" For example, for the fact "Vainqueur de Goliath", the question becomes "Quel roi a vaincu Goliath avec une fronde?"
+   The correct answer is the king's name.
+   Pick 3 distractor king names, preferring kings from the same era. Exclude kings whose key facts have the same text (to avoid ambiguity).
+   Shuffle the 4 options. Record the correct index.
+   The explanation references the king's biblical reference.
+
+4. Question generator for Type 2 (Fact association):
+   Pick a random king. Pick one of their key facts.
+   The question text is: "Lequel de ces faits concerne le roi {king name}?"
+   The correct answer is the chosen fact's text (with its emoji).
+   Pick 3 distractor facts from other kings, preferring facts with the same FactCategory for more challenging distractors.
+   Shuffle and record correct index.
+
+5. Question generator for Type 3 (Prophet-king association):
+   Pick a random king who has at least one prophet in their prophets array (skip kings with empty prophets).
+   The question text is: "Quel prophete etait contemporain du roi {king name}?"
+   The correct answer is one of the king's prophets (pick randomly if multiple).
+   Pick 3 distractor prophets from the getAllProphets() list, excluding the correct king's prophets.
+   Shuffle and record correct index.
+
+6. Question generator for Type 4 (Faithfulness rating):
+   Pick a random king.
+   The question text is: "Comment est evalue le roi {king name} en fidelite a Dieu?"
+   Generate 4 options showing different star ratings. Always include the correct rating. The other 3 should be different valid ratings (1 to 5). Show them as star strings like "1/5", "3/5", etc., or with star emojis.
+   Shuffle and record correct index.
+
+7. Main function: generateQuiz(config: QuizConfig): QuizQuestion[]
+   Based on config.category, filter the king pool (all kings, or only kings from a specific era).
+   Generate config.questionCount questions.
+   Distribute question types roughly evenly across the 4 types (round-robin or random).
+   Avoid duplicate questions: do not ask about the same king+type combination twice.
+   If the pool is too small for certain question types (for example Type 3 needs kings with prophets), fall back to other types.
+   Each generated question gets a unique id (like "q-1", "q-2", etc.).
+   Return the array of QuizQuestion objects.
+
+8. Function for card-specific quiz: generateCardQuiz(kingId: string): QuizQuestion[]
+   Generate 3 to 4 questions specifically about the given king.
+   Use a mix of question types. Type 4 is always included (since every king has a faithfulness rating). Types 1 and 2 use the king's specific facts. Type 3 is included only if the king has prophets.
+
+DEPENDENCIES
+
+Task 02 (types) and Task 03 (kings data with FactCategory on key facts).
+
+WHAT OTHER TASKS NEED FROM THIS
+
+Task 11 (QuizModal) calls generateCardQuiz to get questions for a specific king.
+Task 12 (Quiz Page) calls generateQuiz to get questions for the global quiz.
+
+SUCCESS CRITERIA
+
+generateQuiz with category 'all' and questionCount 10 returns exactly 10 QuizQuestion objects.
+generateQuiz with category 'israel' returns questions only about northern kingdom kings.
+Each question has exactly 4 options with one correct answer.
+The correctIndex points to the right answer in the options array.
+Questions include a mix of the 4 types.
+No duplicate king+type combinations in a single quiz session.
+generateCardQuiz('david') returns 3 to 4 questions specifically about David.
+Distractors are plausible (same era or same fact category when possible).
+All questions have non-empty explanation strings with biblical references.
+npm run build produces no errors.

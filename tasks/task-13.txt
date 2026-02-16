@@ -1,0 +1,81 @@
+Task 13 : Progression Integration, Accessibility, and Final Polish
+
+Connect all progression tracking to the UI, create placeholder assets, add meta tags, ensure accessibility compliance, verify responsive behavior, and prepare the app for deployment.
+
+CONTEXT FROM THE PRD
+
+This final task brings together all the pieces. The progression system (Zustand) needs to be visibly connected to the UI everywhere. Accessibility must meet the criteria in the PRD (keyboard navigation, ARIA attributes, reduced motion support, contrast ratios). The app needs proper meta tags for sharing. A placeholder image is needed for kings without portraits yet. The static build must work flawlessly.
+
+WHAT TO BUILD
+
+1. Progression UI integration (if not already done in previous tasks):
+   Header: the "X / 43" badge updates live as cards are flipped.
+   Hero: the progress bar width and percentage update live.
+   CardFront: a small checkmark badge appears on cards that have been viewed.
+   Quiz results (both modal and page): show "Meilleur score : X/Y" if the quiz has been played before, using quizScores from the store.
+
+2. Create placeholder image:
+   Create or add a placeholder.webp file at public/images/kings/placeholder.webp.
+   This should be a simple image (can be a solid parchment-colored rectangle with a faint crown silhouette, or just a neutral placeholder). If you cannot generate an image, create a minimal SVG placeholder and save it as placeholder.svg instead, then update the CardFront fallback path accordingly.
+
+3. Meta tags and SEO:
+   In src/app/layout.tsx, add comprehensive metadata:
+   Title: "Rois d Israel et de Juda \u2014 Collection Interactive"
+   Description: a compelling 150-character description in French about discovering the 43 kings.
+   Open Graph tags: title, description, type 'website'.
+   Viewport meta: ensure it is set for responsive behavior.
+   Theme color: set to the parchment-900 color (#3d2e1e).
+   Add a favicon (create a simple one or note that it should be provided).
+
+4. Accessibility verification and fixes:
+   Cards: ensure every KingCard has role="button", tabIndex={0}, aria-label, and aria-pressed.
+   Keyboard: Enter and Space toggle the card flip. Escape closes the QuizModal.
+   StarRating: has aria-label "Fidelite : X sur 5".
+   Images: all king portraits have descriptive alt text "Portrait de {name}, roi de {kingdom}".
+   Color contrast: verify that text on parchment backgrounds meets WCAG AA (the PRD states brun #3d2e1e on parchment #f5e6d0 is ratio over 7:1 which meets AAA).
+   Reduced motion: when prefers-reduced-motion is set, all animations (card flip, quiz feedback, progress bar) should be instant or disabled. Check that the Motion library's useReducedMotion is used in KingCard and QuizFlow.
+   Focus indicators: ensure all interactive elements have visible focus outlines for keyboard users.
+
+5. Responsive testing checklist (verify each):
+   Mobile (below 640px): 1-column card grid, readable text, touch-friendly buttons, no horizontal scroll.
+   Tablet (640 to 1023px): 2-column grid, header fits.
+   Desktop (1024 to 1279px): 3-column grid.
+   Large desktop (1280px+): 4-column grid.
+   Quiz page: usable at all breakpoints.
+   QuizModal: scrollable on small screens, buttons are tappable.
+
+6. Performance checks:
+   Run npm run build and verify it produces a clean static export in out/.
+   Check that next/image is used for king portraits with lazy loading.
+   Verify that fonts are self-hosted via next/font/google (no runtime Google Fonts requests).
+   Ensure no unnecessary re-renders: cards outside the viewport should not be animated.
+
+7. Final cleanup:
+   Remove any placeholder comments, console.logs, or TODO markers from the code.
+   Ensure all imports are used and there are no unused files.
+   Verify the app works correctly with an empty localStorage (new user experience).
+   Verify the app works correctly with existing localStorage data (returning user).
+
+DEPENDENCIES
+
+All previous tasks (01 through 12) must be completed.
+
+WHAT OTHER TASKS NEED FROM THIS
+
+None. This is the final task.
+
+SUCCESS CRITERIA
+
+The "X / 43" counter in the header updates when a card is flipped.
+The hero progress bar reflects the real number of discovered kings.
+Viewed cards show a checkmark badge.
+Quiz results show best scores from previous attempts.
+A placeholder image appears for kings without portraits.
+The page has proper Open Graph meta tags (inspect the HTML head).
+All interactive elements are keyboard accessible.
+The app respects prefers-reduced-motion.
+All images have alt text.
+StarRating has aria-label.
+The static build (npm run build) completes without errors.
+The app loads and works correctly in a browser from the out/ directory.
+No console errors or warnings in the browser.
