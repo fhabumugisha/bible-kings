@@ -39,7 +39,7 @@ export default function CardFront({ king, isViewed }: CardFrontProps) {
       )}
 
       {/* Star Rating */}
-      <div className="absolute right-3 top-3 z-10">
+      <div className="absolute right-3 top-3 z-10 rounded-full bg-black/60 px-2 py-1 backdrop-blur-sm">
         <StarRating rating={king.faithfulness} size="sm" />
       </div>
 

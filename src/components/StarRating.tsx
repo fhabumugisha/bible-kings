@@ -22,7 +22,7 @@ export default function StarRating({ rating, size = 'sm' }: StarRatingProps) {
             key={star}
             width={starSize}
             height={starSize}
-            className={isFilled ? 'text-gold' : 'text-gray-400'}
+            className={isFilled ? 'text-gold' : 'text-white/40'}
           />
         )
       })}
