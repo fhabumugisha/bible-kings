@@ -11,9 +11,10 @@ interface KingCardProps {
   king: King
   onQuizClick: () => void
   onParallelKingClick: (id: string) => void
+  onViewDetailsClick?: () => void
 }
 
-export default function KingCard({ king, onQuizClick, onParallelKingClick }: KingCardProps) {
+export default function KingCard({ king, onQuizClick, onParallelKingClick, onViewDetailsClick }: KingCardProps) {
   const [isFlipped, setIsFlipped] = useState(false)
   const kingsViewed = useProgressStore((state) => state.kingsViewed)
   const markViewed = useProgressStore((state) => state.markViewed)
@@ -84,6 +85,7 @@ export default function KingCard({ king, onQuizClick, onParallelKingClick }: Kin
             king={king}
             onQuizClick={onQuizClick}
             onParallelKingClick={onParallelKingClick}
+            onViewDetailsClick={onViewDetailsClick}
           />
         </motion.div>
       </motion.div>

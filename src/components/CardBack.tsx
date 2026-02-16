@@ -8,9 +8,10 @@ interface CardBackProps {
   king: King
   onQuizClick: () => void
   onParallelKingClick: (id: string) => void
+  onViewDetailsClick?: () => void
 }
 
-export default function CardBack({ king, onQuizClick, onParallelKingClick }: CardBackProps) {
+export default function CardBack({ king, onQuizClick, onParallelKingClick, onViewDetailsClick }: CardBackProps) {
   const borderColor =
     king.kingdom === 'united'
       ? 'border-era-united'
@@ -124,8 +125,19 @@ export default function CardBack({ king, onQuizClick, onParallelKingClick }: Car
         </div>
       </div>
 
-      {/* Quiz Button — pinned at bottom */}
-      <div className="shrink-0 p-3 pt-0">
+      {/* Action Buttons — pinned at bottom */}
+      <div className="shrink-0 p-3 pt-0 space-y-2">
+        {onViewDetailsClick && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation()
+              onViewDetailsClick()
+            }}
+            className="w-full rounded-lg border-2 border-parchment-900/20 bg-parchment-200/60 px-4 py-2 font-inter text-sm font-semibold text-parchment-900 transition-all hover:border-gold hover:bg-parchment-200"
+          >
+            📖 Voir les détails
+          </button>
+        )}
         <button
           onClick={(e) => {
             e.stopPropagation()

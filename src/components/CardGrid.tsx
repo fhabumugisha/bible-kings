@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import type { King, Era } from '@/types'
 import KingCard from './KingCard'
 
@@ -10,6 +11,8 @@ interface CardGridProps {
 }
 
 export default function CardGrid({ kings, eras, onQuizClick }: CardGridProps) {
+  const router = useRouter()
+
   const handleParallelKingClick = (parallelKingId: string) => {
     const element = document.getElementById(parallelKingId)
     if (element) {
@@ -90,6 +93,7 @@ export default function CardGrid({ kings, eras, onQuizClick }: CardGridProps) {
                       king={king}
                       onQuizClick={() => onQuizClick(king.id)}
                       onParallelKingClick={handleParallelKingClick}
+                      onViewDetailsClick={() => router.push(`/kings/${king.id}`)}
                     />
                   </div>
                 ))}

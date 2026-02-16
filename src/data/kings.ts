@@ -1875,6 +1875,15 @@ export function getEraByKingdom(kingdom: Kingdom): Era | undefined {
   return ERAS.find((era) => era.id === kingdom);
 }
 
+export function getAdjacentKings(id: string): { prev: King | null; next: King | null } {
+  const index = KINGS.findIndex((king) => king.id === id);
+  if (index === -1) return { prev: null, next: null };
+  return {
+    prev: index > 0 ? KINGS[index - 1] : null,
+    next: index < KINGS.length - 1 ? KINGS[index + 1] : null,
+  };
+}
+
 export function getAllProphets(): string[] {
   const prophets = new Set<string>();
   for (const king of KINGS) {
