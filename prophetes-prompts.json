@@ -1,0 +1,97 @@
+{
+  "displayName": "Propphets In Bible",
+  "prompts": [
+    {
+      "name": "samuel",
+      "value": "3D Pixar-style biblical prophet portrait, elderly Israelite prophet with long white beard, Middle Eastern features, simple linen ephod and humble robes in cream and earth tones, no crown but radiating spiritual authority, cinematic warm golden lighting, soft depth of field, ancient tabernacle of Shiloh background blurred, expressive face reflecting gentle wisdom and deep devotion, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits"
+    },
+    {
+      "name": "nathan",
+      "value": "3D Pixar-style biblical prophet portrait, dignified Israelite court prophet, Middle Eastern features, elegant but modest dark robes with subtle embroidery, no crown, scroll in hand, cinematic warm golden lighting, soft depth of field, ancient Jerusalem royal palace interior background blurred, expressive face reflecting bold courage and compassionate wisdom, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits"
+    },
+    {
+      "name": "gad",
+      "value": "3D Pixar-style biblical prophet portrait, weathered Israelite seer and advisor, Middle Eastern features, travel-worn robes in muted brown and olive tones, no crown, walking staff in hand, cinematic warm golden lighting, soft depth of field, ancient hilltop with distant camp background blurred, expressive face reflecting quiet determination and faithfulness, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits"
+    },
+    {
+      "name": "ahija",
+      "value": "3D Pixar-style biblical prophet portrait, very elderly blind Israelite prophet, Middle Eastern features, worn and patched robes in faded earth tones, milky white eyes suggesting blindness, torn garment symbolically in hands, cinematic warm golden lighting, soft depth of field, ancient stone house interior in Shiloh background blurred, expressive face reflecting prophetic authority despite frailty, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits"
+    },
+    {
+      "name": "jehu-fils-de-hanani",
+      "value": "3D Pixar-style biblical prophet portrait, stern middle-aged Israelite prophet, Middle Eastern features, austere dark robes with rough texture, no crown, accusatory but righteous posture, cinematic warm golden lighting, soft depth of field, ancient palace courtyard background blurred, expressive face reflecting fierce devotion to justice and unwavering conviction, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits"
+    },
+    {
+      "name": "elie",
+      "value": "3D Pixar-style biblical prophet portrait, wild and intense Israelite prophet, Middle Eastern features, rough animal-skin cloak and leather belt, untamed dark hair and thick beard, no crown, cinematic dramatic golden-orange lighting suggesting fire, soft depth of field, ancient Mount Carmel altar with flames background blurred, expressive face reflecting fierce righteous anger and unwavering faith, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits"
+    },
+    {
+      "name": "elisee",
+      "value": "3D Pixar-style biblical prophet portrait, kind but authoritative Israelite prophet, Middle Eastern features, flowing prophetic robes in deep blue-grey tones, bald head as described in Scripture, holding Elijah's folded mantle, cinematic warm golden lighting, soft depth of field, ancient Jordan River valley background blurred, expressive face reflecting deep compassion and quiet supernatural power, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits"
+    },
+    {
+      "name": "jonas",
+      "value": "3D Pixar-style biblical prophet portrait, reluctant and grumpy Israelite prophet, Middle Eastern features, salt-stained travel robes in faded green and brown, windswept hair from sea journey, no crown, cinematic warm golden lighting with hints of ocean blue, soft depth of field, ancient Nineveh city walls background blurred, expressive face reflecting stubborn reluctance mixed with underlying compassion, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits"
+    },
+    {
+      "name": "amos",
+      "value": "3D Pixar-style biblical prophet portrait, rugged shepherd-turned-prophet, Middle Eastern features, rough wool shepherd robes in dusty brown, sun-weathered skin, strong calloused hands, no crown, cinematic warm golden lighting, soft depth of field, ancient marketplace of Bethel background blurred, expressive face reflecting righteous indignation and compassion for the poor, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits"
+    },
+    {
+      "name": "osee",
+      "value": "3D Pixar-style biblical prophet portrait, sorrowful but loving Israelite prophet, Middle Eastern features, simple robes in muted burgundy and grey, expression of heartbreak mixed with unconditional love, no crown, cinematic warm golden lighting with melancholic undertones, soft depth of field, ancient Northern Kingdom village background blurred, expressive face reflecting deep emotional pain and steadfast devotion, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits"
+    },
+    {
+      "name": "abdias",
+      "value": "3D Pixar-style biblical prophet portrait, solemn Israelite prophet, Middle Eastern features, simple dark robes in charcoal and umber, scroll clutched to chest, no crown, cinematic warm golden lighting, soft depth of field, ancient rocky Edomite mountains of Petra background blurred, expressive face reflecting somber justice and protective love for his people, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits"
+    },
+    {
+      "name": "joel",
+      "value": "3D Pixar-style biblical prophet portrait, earnest young Israelite prophet, Middle Eastern features, clean priestly-style robes in white and blue-grey, expressive gesturing hands, no crown, cinematic warm golden lighting with dramatic storm clouds, soft depth of field, ancient Jerusalem Temple courtyard with locust swarm hint background blurred, expressive face reflecting urgent pleading and hopeful vision, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits"
+    },
+    {
+      "name": "esaie",
+      "value": "3D Pixar-style biblical prophet portrait, majestic and noble Israelite prophet, Middle Eastern features, rich dark blue and purple prophetic robes with gold trim suggesting royal court access, no crown but commanding presence, cinematic warm golden lighting with ethereal glow, soft depth of field, ancient Jerusalem Temple interior with smoke and heavenly light background blurred, expressive face reflecting awe-struck reverence and prophetic fire, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits"
+    },
+    {
+      "name": "michee",
+      "value": "3D Pixar-style biblical prophet portrait, humble village prophet, Middle Eastern features, simple rural robes in earthy terracotta and cream, dust on sandals, no crown, cinematic warm golden lighting, soft depth of field, ancient small village of Moresheth with fields background blurred, expressive face reflecting passionate defense of the vulnerable and moral clarity, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits"
+    },
+    {
+      "name": "nahum",
+      "value": "3D Pixar-style biblical prophet portrait, intense prophetic figure, Middle Eastern features, dark prophetic robes in deep crimson and black suggesting divine judgment, no crown, cinematic dramatic lighting with orange-red undertones suggesting distant burning city, soft depth of field, ancient burning Nineveh skyline background blurred, expressive face reflecting righteous satisfaction and fierce protection of the oppressed, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits"
+    },
+    {
+      "name": "habakuk",
+      "value": "3D Pixar-style biblical prophet portrait, thoughtful questioning prophet, Middle Eastern features, modest scholar-like robes in dusty sage green and brown, hand on chin in contemplative pose, no crown, cinematic warm golden lighting, soft depth of field, ancient watchtower overlooking Judean hills background blurred, expressive face reflecting deep questioning mixed with emerging trust, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits"
+    },
+    {
+      "name": "sophonie",
+      "value": "3D Pixar-style biblical prophet portrait, young nobleman-turned-prophet, Middle Eastern features, fine but not ostentatious robes in deep purple and cream suggesting royal lineage, no crown, cinematic warm golden lighting, soft depth of field, ancient Jerusalem during Josiah's reforms background blurred, expressive face reflecting urgent warning tempered by tender hope, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits"
+    },
+    {
+      "name": "jeremie",
+      "value": "3D Pixar-style biblical prophet portrait, weeping but resilient young prophet, Middle Eastern features, torn and mud-stained robes in dark olive and brown suggesting hardship, tear-streaked face, no crown, cinematic warm golden lighting with somber tones, soft depth of field, ancient Jerusalem walls with smoke from approaching army background blurred, expressive face reflecting overwhelming sorrow and unbreakable faithfulness, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits"
+    },
+    {
+      "name": "ezechiel",
+      "value": "3D Pixar-style biblical prophet portrait, intense visionary priest-prophet, Middle Eastern features, priestly robes adapted for exile in faded white and blue-grey, shaved head as sign of mourning, wide eyes suggesting supernatural visions, no crown, cinematic dramatic golden lighting with mystical blue accents, soft depth of field, ancient Babylonian canal (Kebar) with distant ziggurat background blurred, expressive face reflecting overwhelming awe and prophetic intensity, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits"
+    },
+    {
+      "name": "daniel",
+      "value": "3D Pixar-style biblical prophet portrait, noble young statesman-prophet, Middle Eastern features, Babylonian court robes in rich purple and gold adapted with subtle Hebrew elements, no crown but dignified bearing, cinematic warm golden lighting with dramatic palace atmosphere, soft depth of field, ancient Babylonian palace with lions motif background blurred, expressive face reflecting serene courage and unshakeable faith amidst foreign power, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits"
+    },
+    {
+      "name": "aggee",
+      "value": "3D Pixar-style biblical prophet portrait, energetic elderly Israelite prophet, Middle Eastern features, construction-dusted simple robes in warm tan and cream, animated gesturing hands as if motivating workers, no crown, cinematic warm golden lighting, soft depth of field, ancient half-built Second Temple with scaffolding background blurred, expressive face reflecting fiery determination and encouraging warmth, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits"
+    },
+    {
+      "name": "zacharie",
+      "value": "3D Pixar-style biblical prophet portrait, young visionary priest-prophet, Middle Eastern features, priestly robes in white and silver-blue, wide wondering eyes suggesting nocturnal visions, no crown, cinematic warm golden-blue lighting suggesting night visions, soft depth of field, ancient Jerusalem under reconstruction with starry sky background blurred, expressive face reflecting wonder and prophetic certainty, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits"
+    },
+    {
+      "name": "malachie",
+      "value": "3D Pixar-style biblical prophet portrait, stern final prophet figure, Middle Eastern features, simple priestly robes in dark indigo and cream, holding an open scroll as if reading God's accusation, no crown, cinematic warm golden lighting with twilight undertones suggesting end of an era, soft depth of field, ancient rebuilt Jerusalem Temple with quiet empty courtyard background blurred, expressive face reflecting righteous frustration and hope for the coming dawn, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits"
+    }
+  ]
+}
