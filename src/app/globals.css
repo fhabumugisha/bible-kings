@@ -23,3 +23,26 @@
   --font-cinzel: var(--font-cinzel-var), serif;
   --font-inter: var(--font-inter-var), sans-serif;
 }
+
+/* iOS Safari viewport fix — dvh with vh fallback */
+.min-h-dvh {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Safe area insets for notch/Dynamic Island devices */
+.safe-area-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* French text handling — prevent overflow on small screens */
+.card-text {
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}

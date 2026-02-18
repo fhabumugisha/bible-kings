@@ -8,10 +8,18 @@ import StarRating from './StarRating'
 interface CardFrontProps {
   king: King
   isViewed: boolean
+  lazy?: boolean
 }
 
-export default function CardFront({ king, isViewed }: CardFrontProps) {
+const eraPlaceholderColor: Record<string, string> = {
+  united: '#d4a017',
+  israel: '#c0392b',
+  judah: '#2c3e8f',
+}
+
+export default function CardFront({ king, isViewed, lazy = false }: CardFrontProps) {
   const [imageError, setImageError] = useState(false)
+  const [imageLoaded, setImageLoaded] = useState(false)
 
   const borderColor =
     king.kingdom === 'united'
@@ -43,23 +51,35 @@ export default function CardFront({ king, isViewed }: CardFrontProps) {
         <StarRating rating={king.faithfulness} size="sm" />
       </div>
 
-      {/* Portrait Image — full height */}
+      {/* Era-colored placeholder background while image loads */}
+      <div
+        className="absolute inset-0 transition-opacity duration-300"
+        style={{
+          background: `linear-gradient(135deg, ${eraPlaceholderColor[king.kingdom]}40, ${eraPlaceholderColor[king.kingdom]}20)`,
+          opacity: imageLoaded ? 0 : 1,
+        }}
+      />
+
+      {/* Portrait Image — full height with lazy loading and fade-in */}
       <div className="absolute inset-0">
         <Image
           src={imageError ? '/images/kings/placeholder.svg' : king.imagePath}
           alt={`Portrait de ${king.name}, roi de ${king.kingdom === 'united' ? 'Israël uni' : king.kingdom === 'israel' ? 'Israël' : 'Juda'}`}
           fill
-          className="object-cover"
+          className="object-cover transition-opacity duration-300"
+          style={{ opacity: imageLoaded ? 1 : 0 }}
+          loading={lazy ? 'lazy' : undefined}
           onError={() => setImageError(true)}
+          onLoad={() => setImageLoaded(true)}
         />
       </div>
 
       {/* Bottom Gradient Overlay with Name and Reign Duration */}
       <div className="absolute bottom-0 left-0 right-0 z-10 bg-gradient-to-t from-black/80 via-black/60 to-transparent p-4 pt-10">
-        <div className="font-cinzel text-lg font-bold text-white">
+        <div className="font-cinzel text-lg font-bold text-white truncate">
           {crownEmoji} {king.name}
         </div>
-        <div className="font-inter text-sm text-white/80">{king.reignDuration} de règne</div>
+        <div className="font-inter text-sm text-white/80 truncate">{king.reignDuration} de règne</div>
       </div>
     </div>
   )

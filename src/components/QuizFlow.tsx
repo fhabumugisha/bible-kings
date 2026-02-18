@@ -48,17 +48,17 @@ export default function QuizFlow() {
   // Config Stage
   if (stage === 'config') {
     return (
-      <div className="min-h-screen bg-parchment-900 text-white py-8 px-4">
+      <div className="min-h-dvh bg-parchment-900 text-white py-8 px-4" style={{ paddingTop: 'max(2rem, env(safe-area-inset-top))', paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}>
         <div className="max-w-2xl mx-auto">
           <div className="flex items-center justify-between mb-8">
             <h1 className="font-cinzel text-3xl">👑 Quiz</h1>
-            <Link href="/" className="text-gold hover:text-gold-light transition-colors">
+            <Link href="/" className="text-gold hover:text-gold-light transition-colors min-h-[44px] flex items-center">
               Retour
             </Link>
           </div>
 
           <motion.div
-            className="bg-parchment-100 rounded-2xl p-8 text-parchment-900"
+            className="bg-parchment-100 rounded-2xl p-6 sm:p-8 text-parchment-900"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
@@ -69,7 +69,7 @@ export default function QuizFlow() {
                   <button
                     key={opt.value}
                     onClick={() => setCategory(opt.value)}
-                    className={`px-6 py-3 rounded-full font-medium transition-colors ${
+                    className={`px-5 py-3 min-h-[44px] rounded-full font-medium transition-colors ${
                       category === opt.value
                         ? 'bg-gold text-white'
                         : 'bg-parchment-200 hover:bg-parchment-300'
@@ -88,7 +88,7 @@ export default function QuizFlow() {
                   <button
                     key={count}
                     onClick={() => setQuestionCount(count)}
-                    className={`px-6 py-3 rounded-full font-medium transition-colors ${
+                    className={`px-6 py-3 min-h-[44px] rounded-full font-medium transition-colors ${
                       questionCount === count
                         ? 'bg-gold text-white'
                         : 'bg-parchment-200 hover:bg-parchment-300'
@@ -102,7 +102,7 @@ export default function QuizFlow() {
 
             <button
               onClick={handleStart}
-              className="w-full bg-gold text-white py-4 rounded-xl font-semibold text-lg hover:bg-gold/90 transition-colors"
+              className="w-full bg-gold text-white py-4 min-h-[56px] rounded-xl font-semibold text-lg hover:bg-gold/90 transition-colors"
             >
               Commencer
             </button>
@@ -117,17 +117,22 @@ export default function QuizFlow() {
     const progressPercent = ((quiz.currentIndex + (quiz.isAnswered ? 1 : 0)) / quiz.totalQuestions) * 100
 
     return (
-      <div className="min-h-screen bg-parchment-900 text-white py-8 px-4">
+      <div className="min-h-dvh bg-parchment-900 text-white py-8 px-4" style={{ paddingTop: 'max(2rem, env(safe-area-inset-top))', paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}>
         <div className="max-w-2xl mx-auto">
           <div className="flex items-center justify-between mb-8">
             <h1 className="font-cinzel text-3xl">👑 Quiz</h1>
-            <Link href="/" className="text-gold hover:text-gold-light transition-colors">
+            <Link href="/" className="text-gold hover:text-gold-light transition-colors min-h-[44px] flex items-center">
               Retour
             </Link>
           </div>
 
+          {/* Screen reader announcements */}
+          <div aria-live="polite" className="sr-only">
+            Question {quiz.currentIndex + 1} sur {quiz.totalQuestions}
+          </div>
+
           <motion.div
-            className="bg-parchment-100 rounded-2xl p-8 text-parchment-900"
+            className="bg-parchment-100 rounded-2xl p-6 sm:p-8 text-parchment-900"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
@@ -148,14 +153,14 @@ export default function QuizFlow() {
               </div>
             </div>
 
-            <h2 className="font-cinzel text-2xl mb-6">{quiz.currentQuestion.question}</h2>
+            <h2 className="font-cinzel text-xl sm:text-2xl mb-6">{quiz.currentQuestion.question}</h2>
 
             <div className="space-y-3 mb-6">
               {quiz.currentQuestion.options.map((option, index) => {
                 const isSelected = quiz.selectedAnswer === index
                 const isCorrect = index === quiz.currentQuestion.correctIndex
 
-                let buttonClass = 'w-full text-left px-6 py-4 rounded-xl font-medium transition-all '
+                let buttonClass = 'w-full text-left px-5 py-4 min-h-[56px] rounded-xl font-medium transition-all '
 
                 if (!quiz.isAnswered) {
                   buttonClass += isSelected
@@ -193,7 +198,7 @@ export default function QuizFlow() {
               >
                 <div className="flex items-start gap-2">
                   <span className="text-xl">📖</span>
-                  <p className="text-sm">{quiz.currentQuestion.explanation}</p>
+                  <p className="text-sm card-text">{quiz.currentQuestion.explanation}</p>
                 </div>
               </motion.div>
             )}
@@ -207,7 +212,7 @@ export default function QuizFlow() {
                     quiz.nextQuestion()
                   }
                 }}
-                className="w-full bg-gold text-white py-4 rounded-xl font-semibold hover:bg-gold/90 transition-colors"
+                className="w-full bg-gold text-white py-4 min-h-[48px] rounded-xl font-semibold hover:bg-gold/90 transition-colors"
               >
                 {quiz.isComplete ? 'Voir les résultats' : 'Question suivante →'}
               </button>
@@ -226,17 +231,17 @@ export default function QuizFlow() {
   const previousBest = quizScores[`global-${category}-${questionCount}`]
 
   return (
-    <div className="min-h-screen bg-parchment-900 text-white py-8 px-4">
+    <div className="min-h-dvh bg-parchment-900 text-white py-8 px-4" style={{ paddingTop: 'max(2rem, env(safe-area-inset-top))', paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}>
       <div className="max-w-2xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <h1 className="font-cinzel text-3xl">👑 Quiz</h1>
-          <Link href="/" className="text-gold hover:text-gold-light transition-colors">
+          <Link href="/" className="text-gold hover:text-gold-light transition-colors min-h-[44px] flex items-center">
             Retour
           </Link>
         </div>
 
         <motion.div
-          className="bg-parchment-100 rounded-2xl p-8 text-parchment-900"
+          className="bg-parchment-100 rounded-2xl p-6 sm:p-8 text-parchment-900"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
@@ -302,7 +307,7 @@ export default function QuizFlow() {
             </p>
           )}
 
-          <div className="bg-parchment-50 rounded-xl p-6 mb-6 max-h-96 overflow-y-auto">
+          <div className="bg-parchment-50 rounded-xl p-4 sm:p-6 mb-6 max-h-96 overflow-y-auto">
             <h3 className="font-cinzel text-xl mb-4">Détail des réponses</h3>
             <div className="space-y-3">
               {questions.map((question, index) => {
@@ -330,13 +335,13 @@ export default function QuizFlow() {
           <div className="flex gap-4">
             <button
               onClick={handleReplay}
-              className="flex-1 bg-gold text-white py-4 rounded-xl font-semibold hover:bg-gold/90 transition-colors"
+              className="flex-1 bg-gold text-white py-4 min-h-[48px] rounded-xl font-semibold hover:bg-gold/90 transition-colors"
             >
               Rejouer
             </button>
             <Link
               href="/"
-              className="flex-1 bg-parchment-200 text-parchment-900 py-4 rounded-xl font-semibold hover:bg-parchment-300 transition-colors text-center"
+              className="flex-1 bg-parchment-200 text-parchment-900 py-4 min-h-[48px] rounded-xl font-semibold hover:bg-parchment-300 transition-colors text-center"
             >
               Retour à l&apos;accueil
             </Link>

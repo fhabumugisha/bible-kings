@@ -67,7 +67,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="w-full bg-parchment-900 text-white py-10 md:py-14 lg:py-16">
+    <section className="w-full bg-parchment-900 text-white py-10 md:py-14 lg:py-16" style={{ paddingBottom: 'max(2.5rem, env(safe-area-inset-bottom))' }}>
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="flex flex-col lg:flex-row lg:items-center lg:gap-12">
           {/* Left — text content */}

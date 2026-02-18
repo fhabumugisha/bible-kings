@@ -46,12 +46,17 @@ export default function CardGrid({ kings, eras, onQuizClick }: CardGridProps) {
     }
   }
 
+  // First era is above the fold — don't lazy load those
+  const firstEraId = eras[0]?.id
+
   return (
     <div className="w-full">
       {eras.map((era) => {
         const eraKings = kings.filter((king) => king.kingdom === era.id)
 
         if (eraKings.length === 0) return null
+
+        const isFirstEra = era.id === firstEraId
 
         return (
           <section
@@ -85,15 +90,21 @@ export default function CardGrid({ kings, eras, onQuizClick }: CardGridProps) {
                 </div>
               </div>
 
-              {/* Grid of Cards */}
+              {/* Grid of Cards — mobile: 1 col centered, no col-span-2 */}
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8 xl:grid-cols-4 xl:gap-8">
                 {eraKings.map((king) => (
-                  <div key={king.id} id={king.id} className="flex justify-center">
+                  <div
+                    key={king.id}
+                    id={king.id}
+                    className="flex justify-center max-w-[320px] mx-auto sm:max-w-none w-full"
+                    style={{ scrollMarginTop: '80px' }}
+                  >
                     <KingCard
                       king={king}
                       onQuizClick={() => onQuizClick(king.id)}
                       onParallelKingClick={handleParallelKingClick}
                       onViewDetailsClick={() => router.push(`/kings/${king.id}`)}
+                      lazy={!isFirstEra}
                     />
                   </div>
                 ))}

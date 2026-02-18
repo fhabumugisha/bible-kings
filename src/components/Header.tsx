@@ -7,7 +7,7 @@ export default function Header() {
   const kingsViewed = useProgressStore((state) => state.kingsViewed);
 
   return (
-    <header className="sticky top-0 z-50 bg-parchment-50 border-b border-parchment-200 shadow-sm">
+    <header className="sticky top-0 z-50 bg-parchment-50 border-b border-parchment-200 shadow-sm" style={{ paddingTop: 'max(0px, env(safe-area-inset-top))' }}>
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         {/* Left: App Title */}
         <Link

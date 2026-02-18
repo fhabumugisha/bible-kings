@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
 import type { King } from '@/types'
 import { useProgressStore } from '@/stores/useProgressStore'
@@ -12,9 +12,10 @@ interface KingCardProps {
   onQuizClick: () => void
   onParallelKingClick: (id: string) => void
   onViewDetailsClick?: () => void
+  lazy?: boolean
 }
 
-export default function KingCard({ king, onQuizClick, onParallelKingClick, onViewDetailsClick }: KingCardProps) {
+export default function KingCard({ king, onQuizClick, onParallelKingClick, onViewDetailsClick, lazy = false }: KingCardProps) {
   const [isFlipped, setIsFlipped] = useState(false)
   const kingsViewed = useProgressStore((state) => state.kingsViewed)
   const markViewed = useProgressStore((state) => state.markViewed)
@@ -26,6 +27,9 @@ export default function KingCard({ king, onQuizClick, onParallelKingClick, onVie
       markViewed(king.id)
     }
   }, [isFlipped, isViewed, king.id, markViewed])
+
+  // Show flip hint only if user hasn't viewed any cards yet
+  const showFlipHint = useMemo(() => kingsViewed.length === 0 && !isFlipped, [kingsViewed.length, isFlipped])
 
   const handleToggleFlip = () => {
     setIsFlipped((prev) => !prev)
@@ -71,7 +75,16 @@ export default function KingCard({ king, onQuizClick, onParallelKingClick, onVie
           animate={{ rotateY: isFlipped ? 180 : 0 }}
           transition={springConfig}
         >
-          <CardFront king={king} isViewed={isViewed} />
+          <CardFront king={king} isViewed={isViewed} lazy={lazy} />
+
+          {/* Flip hint — visible only on first visit */}
+          {showFlipHint && (
+            <div className="absolute bottom-16 left-0 right-0 z-20 text-center pointer-events-none">
+              <span className="inline-block bg-black/70 text-white text-xs font-inter px-3 py-1.5 rounded-full animate-pulse">
+                Toucher pour retourner
+              </span>
+            </div>
+          )}
         </motion.div>
 
         {/* Back Face */}

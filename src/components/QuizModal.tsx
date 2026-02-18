@@ -18,6 +18,7 @@ export function QuizModal({ kingId, isOpen, onClose }: QuizModalProps) {
   const recordScore = useProgressStore((state) => state.recordScore)
   const quizScores = useProgressStore((state) => state.quizScores)
   const lastResetKey = useRef('')
+  const firstOptionRef = useRef<HTMLButtonElement>(null)
 
   const king = useMemo(
     () => KINGS.find((k) => k.id === kingId),
@@ -45,6 +46,13 @@ export function QuizModal({ kingId, isOpen, onClose }: QuizModalProps) {
     }
   }, [quiz.isComplete, quiz.score, quiz.totalQuestions, kingId, recordScore]);
 
+  // Focus first answer option when new question appears
+  useEffect(() => {
+    if (isOpen && !quiz.isAnswered && firstOptionRef.current) {
+      firstOptionRef.current.focus()
+    }
+  }, [isOpen, quiz.currentIndex, quiz.isAnswered])
+
   if (!king || questions.length === 0) return null
 
   const progressPercent = ((quiz.currentIndex + 1) / quiz.totalQuestions) * 100
@@ -60,15 +68,29 @@ export function QuizModal({ kingId, isOpen, onClose }: QuizModalProps) {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
-            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 max-w-lg w-[90vw] bg-parchment-50 rounded-2xl p-6 shadow-xl max-h-[90vh] overflow-y-auto"
+            className="fixed z-50 bg-parchment-50 shadow-xl overflow-y-auto
+              inset-0 rounded-none p-4 pt-6
+              sm:inset-auto sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2
+              sm:max-w-lg sm:w-[90vw] sm:rounded-2xl sm:p-6 sm:max-h-[90vh]"
+            style={{ paddingTop: 'max(1.5rem, env(safe-area-inset-top))', paddingBottom: 'max(1rem, env(safe-area-inset-bottom))' }}
           >
             <div className="flex items-center justify-between mb-4">
-              <Dialog.Title className="font-cinzel text-2xl font-bold text-parchment-900">
+              <Dialog.Title className="font-cinzel text-xl sm:text-2xl font-bold text-parchment-900">
                 Quiz — {king.name}
               </Dialog.Title>
-              <Dialog.Close className="text-parchment-900 hover:text-gold transition-colors">
+              <Dialog.Close className="text-parchment-900 hover:text-gold transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center">
                 <span className="text-2xl font-bold leading-none">&times;</span>
               </Dialog.Close>
+            </div>
+
+            {/* Screen reader announcements */}
+            <div aria-live="polite" className="sr-only">
+              {quiz.isAnswered && (
+                quiz.selectedAnswer === quiz.currentQuestion.correctIndex
+                  ? 'Bonne réponse !'
+                  : 'Mauvaise réponse.'
+              )}
+              Question {quiz.currentIndex + 1} sur {quiz.totalQuestions}
             </div>
 
             {!quiz.isComplete ? (
@@ -92,7 +114,7 @@ export function QuizModal({ kingId, isOpen, onClose }: QuizModalProps) {
                   </div>
                 </div>
 
-                <p className="font-cinzel text-xl font-semibold text-parchment-900 mb-6">
+                <p className="font-cinzel text-lg sm:text-xl font-semibold text-parchment-900 mb-6">
                   {quiz.currentQuestion.question}
                 </p>
 
@@ -104,7 +126,7 @@ export function QuizModal({ kingId, isOpen, onClose }: QuizModalProps) {
                     const showResult = quiz.isAnswered;
 
                     let buttonClass =
-                      "w-full text-left px-4 py-3 rounded-lg font-medium transition-all ";
+                      "w-full text-left px-4 py-4 min-h-[56px] rounded-lg font-medium transition-all ";
 
                     if (!showResult) {
                       buttonClass +=
@@ -120,6 +142,7 @@ export function QuizModal({ kingId, isOpen, onClose }: QuizModalProps) {
                     return (
                       <button
                         key={index}
+                        ref={index === 0 ? firstOptionRef : undefined}
                         onClick={() => quiz.selectAnswer(index)}
                         disabled={quiz.isAnswered}
                         className={buttonClass}
@@ -136,7 +159,7 @@ export function QuizModal({ kingId, isOpen, onClose }: QuizModalProps) {
                     animate={{ opacity: 1, y: 0 }}
                     className="bg-parchment-200 rounded-lg p-4 mb-6"
                   >
-                    <p className="text-sm text-parchment-900">
+                    <p className="text-sm text-parchment-900 card-text">
                       <span className="mr-2">📖</span>
                       {quiz.currentQuestion.explanation}
                     </p>
@@ -146,7 +169,7 @@ export function QuizModal({ kingId, isOpen, onClose }: QuizModalProps) {
                 {quiz.isAnswered && !quiz.isComplete && (
                   <button
                     onClick={quiz.nextQuestion}
-                    className="w-full bg-gold hover:bg-gold/90 text-white font-semibold py-3 rounded-lg transition-colors"
+                    className="w-full bg-gold hover:bg-gold/90 text-white font-semibold py-4 min-h-[56px] rounded-lg transition-colors"
                   >
                     Question suivante →
                   </button>
@@ -155,7 +178,7 @@ export function QuizModal({ kingId, isOpen, onClose }: QuizModalProps) {
                 {quiz.isComplete && (
                   <button
                     onClick={onClose}
-                    className="w-full bg-gold hover:bg-gold/90 text-white font-semibold py-3 rounded-lg transition-colors"
+                    className="w-full bg-gold hover:bg-gold/90 text-white font-semibold py-4 min-h-[56px] rounded-lg transition-colors"
                   >
                     Voir les résultats →
                   </button>
@@ -230,7 +253,7 @@ export function QuizModal({ kingId, isOpen, onClose }: QuizModalProps) {
 
                 <button
                   onClick={onClose}
-                  className="w-full bg-gold hover:bg-gold/90 text-white font-semibold py-3 rounded-lg transition-colors"
+                  className="w-full bg-gold hover:bg-gold/90 text-white font-semibold py-4 min-h-[56px] rounded-lg transition-colors"
                 >
                   Fermer
                 </button>

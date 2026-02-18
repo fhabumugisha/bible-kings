@@ -53,7 +53,7 @@ export default function KingDetailClient({ king, prevKing, nextKing }: KingDetai
 
   return (
     <>
-      <div className="min-h-screen bg-parchment-50">
+      <div className="min-h-dvh bg-parchment-50">
         {/* Navigation Bar */}
         <div className="sticky top-[60px] z-40 border-b border-parchment-300 bg-parchment-100/95 backdrop-blur-sm">
           <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
@@ -249,7 +249,7 @@ export default function KingDetailClient({ king, prevKing, nextKing }: KingDetai
               {/* Quiz CTA */}
               <button
                 onClick={() => setQuizOpen(true)}
-                className="w-full rounded-xl bg-gold px-6 py-3 font-inter text-base font-semibold text-parchment-900 transition-all hover:bg-gold/90 hover:shadow-lg"
+                className="w-full rounded-xl bg-gold px-6 py-4 min-h-[56px] font-inter text-base font-semibold text-parchment-900 transition-all hover:bg-gold/90 hover:shadow-lg"
               >
                 🎯 Tester mes connaissances sur {king.name}
               </button>
