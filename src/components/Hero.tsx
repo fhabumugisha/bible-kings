@@ -104,9 +104,11 @@ export default function Hero() {
                 </span>
               </div>
               <div className="w-full h-3 bg-white/10 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-gold transition-all duration-700 ease-out"
-                  style={{ width: `${progress}%` }}
+                <motion.div
+                  className="h-full bg-gold"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${progress}%` }}
+                  transition={{ duration: 0.8, ease: 'easeOut' }}
                 />
               </div>
             </div>
