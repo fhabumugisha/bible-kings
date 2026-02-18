@@ -18,7 +18,9 @@ export default function ProphetCardBack({ prophet, onQuizClick, onViewDetailsCli
         ? 'border-era-israel'
         : prophet.era === 'judah'
           ? 'border-era-judah'
-          : 'border-era-postexilic'
+          : prophet.era === 'fulfillment'
+            ? 'border-era-fulfillment'
+            : 'border-era-postexilic'
 
   const impactLabel = [
     'Mention',

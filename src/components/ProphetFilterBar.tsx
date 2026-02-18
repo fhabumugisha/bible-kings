@@ -22,6 +22,7 @@ export default function ProphetFilterBar({
     { id: 'israel' as const, label: 'Royaume du Nord' },
     { id: 'judah' as const, label: 'Royaume du Sud' },
     { id: 'postexilic' as const, label: 'Post-Exiliques' },
+    { id: 'fulfillment' as const, label: 'Accomplissement' },
   ]
 
   const eraColor = (id: string, active: boolean) => {
@@ -31,6 +32,7 @@ export default function ProphetFilterBar({
     if (id === 'israel') return 'bg-era-israel text-white shadow-sm'
     if (id === 'judah') return 'bg-era-judah text-white shadow-sm'
     if (id === 'postexilic') return 'bg-era-postexilic text-white shadow-sm'
+    if (id === 'fulfillment') return 'bg-era-fulfillment text-white shadow-sm'
     return 'bg-parchment-900 text-white shadow-sm'
   }
 

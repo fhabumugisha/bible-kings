@@ -1,6 +1,6 @@
 export type Kingdom = "united" | "israel" | "judah";
 
-export type ProphetEraId = "united" | "israel" | "judah" | "postexilic";
+export type ProphetEraId = "united" | "israel" | "judah" | "postexilic" | "fulfillment";
 
 export type FactCategory =
   | "identity"

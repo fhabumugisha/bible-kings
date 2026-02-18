@@ -24,7 +24,9 @@ export default function ProphetDetailClient({ prophet, prevProphet, nextProphet 
         ? 'border-era-israel'
         : prophet.era === 'judah'
           ? 'border-era-judah'
-          : 'border-era-postexilic'
+          : prophet.era === 'fulfillment'
+            ? 'border-era-fulfillment'
+            : 'border-era-postexilic'
 
   const accentColor =
     prophet.era === 'united'
@@ -33,7 +35,9 @@ export default function ProphetDetailClient({ prophet, prevProphet, nextProphet 
         ? '#c0392b'
         : prophet.era === 'judah'
           ? '#2c3e8f'
-          : '#0d9488'
+          : prophet.era === 'fulfillment'
+            ? '#7c3aed'
+            : '#0d9488'
 
   const eraLabel =
     prophet.era === 'united'
@@ -42,7 +46,9 @@ export default function ProphetDetailClient({ prophet, prevProphet, nextProphet 
         ? 'Royaume du Nord'
         : prophet.era === 'judah'
           ? 'Royaume du Sud'
-          : 'Post-Exiliques'
+          : prophet.era === 'fulfillment'
+            ? 'Accomplissement'
+            : 'Post-Exiliques'
 
   const impactLabel = [
     'Mention',

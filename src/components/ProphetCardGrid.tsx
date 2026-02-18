@@ -23,6 +23,8 @@ export default function ProphetCardGrid({ prophets, eras, onQuizClick }: Prophet
         return '🏛️'
       case 'postexilic':
         return '🌅'
+      case 'fulfillment':
+        return '✝️'
       default:
         return ''
     }
@@ -38,6 +40,8 @@ export default function ProphetCardGrid({ prophets, eras, onQuizClick }: Prophet
         return 'border-era-judah bg-era-judah/5'
       case 'postexilic':
         return 'border-era-postexilic bg-era-postexilic/5'
+      case 'fulfillment':
+        return 'border-era-fulfillment bg-era-fulfillment/5'
       default:
         return ''
     }
@@ -73,6 +77,8 @@ export default function ProphetCardGrid({ prophets, eras, onQuizClick }: Prophet
                           ? '#c0392b'
                           : era.id === 'judah'
                             ? '#2c3e8f'
+                            : era.id === 'fulfillment'
+                            ? '#7c3aed'
                             : '#0d9488',
                   }}
                 />

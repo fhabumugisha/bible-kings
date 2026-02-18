@@ -28,7 +28,9 @@ export async function generateMetadata({
         ? 'Royaume du Nord'
         : prophet.era === 'judah'
           ? 'Royaume du Sud'
-          : 'Post-Exiliques'
+          : prophet.era === 'fulfillment'
+            ? 'Accomplissement'
+            : 'Post-Exiliques'
 
   return {
     title: `${prophet.name} — ${eraLabel} | Bible Interactive`,

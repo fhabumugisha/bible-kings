@@ -16,6 +16,7 @@ const eraPlaceholderColor: Record<string, string> = {
   israel: '#c0392b',
   judah: '#2c3e8f',
   postexilic: '#0d9488',
+  fulfillment: '#7c3aed',
 }
 
 export default function ProphetCardFront({ prophet, isViewed, lazy = false }: ProphetCardFrontProps) {
@@ -29,7 +30,9 @@ export default function ProphetCardFront({ prophet, isViewed, lazy = false }: Pr
         ? 'border-era-israel'
         : prophet.era === 'judah'
           ? 'border-era-judah'
-          : 'border-era-postexilic'
+          : prophet.era === 'fulfillment'
+            ? 'border-era-fulfillment'
+            : 'border-era-postexilic'
 
   return (
     <div
