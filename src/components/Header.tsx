@@ -5,6 +5,7 @@ import { useProgressStore } from '@/stores/useProgressStore';
 
 export default function Header() {
   const kingsViewed = useProgressStore((state) => state.kingsViewed);
+  const prophetsViewed = useProgressStore((state) => state.prophetsViewed);
 
   return (
     <header className="sticky top-0 z-50 bg-parchment-50 border-b border-parchment-200 shadow-sm" style={{ paddingTop: 'max(0px, env(safe-area-inset-top))' }}>
@@ -14,17 +15,23 @@ export default function Header() {
           href="/"
           className="flex items-center gap-2 text-lg md:text-xl font-cinzel font-bold text-parchment-900 hover:text-gold transition-colors"
         >
-          <span className="text-2xl">👑</span>
-          <span className="hidden sm:inline">Rois d&apos;Israël</span>
-          <span className="sm:hidden">Rois</span>
+          <span className="text-2xl">📖</span>
+          <span className="hidden sm:inline">Bible Interactive</span>
+          <span className="sm:hidden">Bible</span>
         </Link>
 
-        {/* Right: Progress Counter + Quiz Link */}
-        <div className="flex items-center gap-4">
-          {/* Progress Counter Badge */}
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-gold-light/30 rounded-full border border-gold/20 text-sm font-inter font-semibold text-parchment-900">
-            <span>{kingsViewed.length} / 43</span>
+        {/* Right: Dual Progress Counters + Quiz Link */}
+        <div className="flex items-center gap-2 sm:gap-4">
+          {/* Kings Progress Badge */}
+          <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-gold-light/30 rounded-full border border-gold/20 text-xs sm:text-sm font-inter font-semibold text-parchment-900">
+            <span>{kingsViewed.length}/43</span>
             <span>👑</span>
+          </div>
+
+          {/* Prophets Progress Badge */}
+          <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-prophet-light/30 rounded-full border border-prophet/20 text-xs sm:text-sm font-inter font-semibold text-parchment-900">
+            <span>{prophetsViewed.length}/23</span>
+            <span>🕊️</span>
           </div>
 
           {/* Quiz Link */}

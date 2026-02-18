@@ -1,26 +1,19 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import type { King, Era } from '@/types'
-import KingCard from './KingCard'
+import type { Prophet, ProphetEra, ProphetEraId } from '@/types'
+import ProphetCard from './ProphetCard'
 
-interface CardGridProps {
-  kings: King[]
-  eras: Era[]
-  onQuizClick: (kingId: string) => void
+interface ProphetCardGridProps {
+  prophets: Prophet[]
+  eras: ProphetEra[]
+  onQuizClick?: (prophetId: string) => void
 }
 
-export default function CardGrid({ kings, eras, onQuizClick }: CardGridProps) {
+export default function ProphetCardGrid({ prophets, eras, onQuizClick }: ProphetCardGridProps) {
   const router = useRouter()
 
-  const handleParallelKingClick = (parallelKingId: string) => {
-    const element = document.getElementById(parallelKingId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'center' })
-    }
-  }
-
-  const getEraEmoji = (eraId: string): string => {
+  const getEraEmoji = (eraId: ProphetEraId): string => {
     switch (eraId) {
       case 'united':
         return '👑'
@@ -28,12 +21,16 @@ export default function CardGrid({ kings, eras, onQuizClick }: CardGridProps) {
         return '⚔️'
       case 'judah':
         return '🏛️'
+      case 'postexilic':
+        return '🌅'
+      case 'fulfillment':
+        return '✝️'
       default:
         return ''
     }
   }
 
-  const getEraColorClasses = (eraId: string): string => {
+  const getEraColorClasses = (eraId: ProphetEraId): string => {
     switch (eraId) {
       case 'united':
         return 'border-era-united bg-era-united/5'
@@ -41,6 +38,10 @@ export default function CardGrid({ kings, eras, onQuizClick }: CardGridProps) {
         return 'border-era-israel bg-era-israel/5'
       case 'judah':
         return 'border-era-judah bg-era-judah/5'
+      case 'postexilic':
+        return 'border-era-postexilic bg-era-postexilic/5'
+      case 'fulfillment':
+        return 'border-era-fulfillment bg-era-fulfillment/5'
       default:
         return ''
     }
@@ -50,11 +51,11 @@ export default function CardGrid({ kings, eras, onQuizClick }: CardGridProps) {
   const firstEraId = eras[0]?.id
 
   return (
-    <div className="w-full">
+    <div className="w-full" id="prophet-grid">
       {eras.map((era) => {
-        const eraKings = kings.filter((king) => king.kingdom === era.id)
+        const eraProphets = prophets.filter((prophet) => prophet.era === era.id)
 
-        if (eraKings.length === 0) return null
+        if (eraProphets.length === 0) return null
 
         const isFirstEra = era.id === firstEraId
 
@@ -67,14 +68,18 @@ export default function CardGrid({ kings, eras, onQuizClick }: CardGridProps) {
               {/* Era Header */}
               <div className="mb-8 md:mb-12">
                 <div
-                  className={`mb-4 h-1 w-20 bg-${era.color}`}
+                  className={`mb-4 h-1 w-20`}
                   style={{
                     backgroundColor:
                       era.id === 'united'
                         ? '#d4a017'
                         : era.id === 'israel'
                           ? '#c0392b'
-                          : '#2c3e8f',
+                          : era.id === 'judah'
+                            ? '#2c3e8f'
+                            : era.id === 'fulfillment'
+                            ? '#7c3aed'
+                            : '#0d9488',
                   }}
                 />
                 <h2 className="mb-3 font-cinzel text-2xl font-bold text-parchment-900 sm:text-3xl md:text-4xl">
@@ -84,7 +89,7 @@ export default function CardGrid({ kings, eras, onQuizClick }: CardGridProps) {
                   {era.description}
                 </p>
                 <div className="flex flex-wrap items-center gap-4 font-inter text-sm text-scroll">
-                  <span>{era.kingCount} rois</span>
+                  <span>{era.prophetCount} prophètes</span>
                   <span className="text-scroll/50">•</span>
                   <span>{era.dates}</span>
                 </div>
@@ -92,18 +97,17 @@ export default function CardGrid({ kings, eras, onQuizClick }: CardGridProps) {
 
               {/* Grid of Cards — mobile: 1 col centered, no col-span-2 */}
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8 xl:grid-cols-4 xl:gap-8">
-                {eraKings.map((king) => (
+                {eraProphets.map((prophet) => (
                     <div
-                      key={king.id}
-                      id={king.id}
+                      key={prophet.id}
+                      id={prophet.id}
                       className="flex justify-center max-w-[320px] mx-auto sm:max-w-none w-full"
                       style={{ scrollMarginTop: '80px' }}
                     >
-                      <KingCard
-                        king={king}
-                        onQuizClick={() => onQuizClick(king.id)}
-                        onParallelKingClick={handleParallelKingClick}
-                        onViewDetailsClick={() => router.push(`/rois/${king.id}`)}
+                      <ProphetCard
+                        prophet={prophet}
+                        onQuizClick={() => onQuizClick?.(prophet.id)}
+                        onViewDetailsClick={() => router.push(`/prophetes/${prophet.id}`)}
                         lazy={!isFirstEra}
                       />
                     </div>

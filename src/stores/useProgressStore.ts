@@ -9,8 +9,10 @@ interface QuizScore {
 
 interface ProgressState {
   kingsViewed: string[];
+  prophetsViewed: string[];
   quizScores: Record<string, QuizScore>;
   markViewed: (kingId: string) => void;
+  markProphetViewed: (prophetId: string) => void;
   recordScore: (quizId: string, score: number, total: number) => void;
   resetProgress: () => void;
 }
@@ -19,12 +21,19 @@ export const useProgressStore = create<ProgressState>()(
   persist(
     (set) => ({
       kingsViewed: [],
+      prophetsViewed: [],
       quizScores: {},
 
       markViewed: (kingId) =>
         set((state) => {
           if (state.kingsViewed.includes(kingId)) return state;
           return { kingsViewed: [...state.kingsViewed, kingId] };
+        }),
+
+      markProphetViewed: (prophetId) =>
+        set((state) => {
+          if (state.prophetsViewed.includes(prophetId)) return state;
+          return { prophetsViewed: [...state.prophetsViewed, prophetId] };
         }),
 
       recordScore: (quizId, score, total) =>
@@ -46,7 +55,8 @@ export const useProgressStore = create<ProgressState>()(
           };
         }),
 
-      resetProgress: () => set({ kingsViewed: [], quizScores: {} }),
+      resetProgress: () =>
+        set({ kingsViewed: [], prophetsViewed: [], quizScores: {} }),
     }),
     {
       name: "kings-progress",

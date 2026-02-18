@@ -12,6 +12,12 @@
   --color-era-united: #d4a017;
   --color-era-israel: #c0392b;
   --color-era-judah: #2c3e8f;
+  --color-era-postexilic: #0d9488;
+  --color-era-fulfillment: #7c3aed;
+
+  /* Couleurs — Prophètes */
+  --color-prophet: #0d9488;
+  --color-prophet-light: #ccfbf1;
 
   /* Couleurs — UI */
   --color-gold: #d4a017;

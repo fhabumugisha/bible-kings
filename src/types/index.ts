@@ -1,5 +1,7 @@
 export type Kingdom = "united" | "israel" | "judah";
 
+export type ProphetEraId = "united" | "israel" | "judah" | "postexilic" | "fulfillment";
+
 export type FactCategory =
   | "identity"
   | "achievement"
@@ -42,6 +44,36 @@ export interface King {
   imagePrompt: string;
 }
 
+export interface Prophet {
+  id: string;
+  name: string;
+  number: number;
+  era: ProphetEraId;
+  biblicalReference: string;
+  ministryDuration: string;
+  ministryYears: string;
+  kingdom: string;
+  contemporaryKings: string[];
+  specialty: string;
+  impact: number;
+  keyFacts: KeyFact[];
+  explanation: string;
+  lesson: string;
+  imagePath: string;
+  imagePrompt: string;
+}
+
+export interface ProphetEra {
+  id: ProphetEraId;
+  label: string;
+  description: string;
+  dates: string;
+  color: string;
+  prophetCount: number;
+}
+
+export type QuizSubjectType = "rois" | "prophetes" | "tous";
+
 export interface QuizQuestion {
   id: string;
   type: "identification" | "facts" | "prophet" | "faithfulness";
@@ -54,6 +86,12 @@ export interface QuizQuestion {
 
 export interface QuizConfig {
   category: Kingdom | "all";
+  questionCount: 5 | 10 | 20;
+}
+
+export interface QuizConfigExtended {
+  subjectType: QuizSubjectType;
+  category: string;
   questionCount: 5 | 10 | 20;
 }
 
