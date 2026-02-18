@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import { motion } from 'motion/react'
 import Link from 'next/link'
-import type { Kingdom, QuizQuestion } from '@/types'
-import { generateQuiz } from '@/lib/quiz'
+import type { Kingdom, QuizQuestion, QuizSubjectType, ProphetEraId } from '@/types'
+import { generateUnifiedQuiz } from '@/lib/unified-quiz'
 import { useQuiz } from '@/hooks/useQuiz'
 import { useProgressStore } from '@/stores/useProgressStore'
 
@@ -12,7 +12,8 @@ type Stage = 'config' | 'quiz' | 'results'
 
 export default function QuizFlow() {
   const [stage, setStage] = useState<Stage>('config')
-  const [category, setCategory] = useState<Kingdom | 'all'>('all')
+  const [subjectType, setSubjectType] = useState<QuizSubjectType>('tous')
+  const [category, setCategory] = useState<string>('all')
   const [questionCount, setQuestionCount] = useState<5 | 10 | 20>(10)
   const [questions, setQuestions] = useState<QuizQuestion[]>([])
 
@@ -20,23 +21,50 @@ export default function QuizFlow() {
   const recordScore = useProgressStore((state) => state.recordScore)
   const quizScores = useProgressStore((state) => state.quizScores)
 
-  const categoryOptions = [
-    { value: 'all' as const, label: 'Tous les rois' },
-    { value: 'united' as const, label: 'Monarchie Unie' },
-    { value: 'israel' as const, label: 'Israël (Nord)' },
-    { value: 'judah' as const, label: 'Juda (Sud)' },
+  const subjectTypeOptions = [
+    { value: 'rois' as const, label: '👑 Rois' },
+    { value: 'prophetes' as const, label: '🕊️ Prophètes' },
+    { value: 'tous' as const, label: '👑🕊️ Tous' },
   ]
+
+  const getCategoryOptions = () => {
+    if (subjectType === 'rois') {
+      return [
+        { value: 'all' as const, label: 'Tous les rois' },
+        { value: 'united' as const, label: 'Monarchie Unie' },
+        { value: 'israel' as const, label: 'Israël (Nord)' },
+        { value: 'judah' as const, label: 'Juda (Sud)' },
+      ]
+    } else if (subjectType === 'prophetes') {
+      return [
+        { value: 'all' as const, label: 'Tous les prophètes' },
+        { value: 'united' as const, label: 'Monarchie Unie' },
+        { value: 'israel' as const, label: 'Royaume du Nord' },
+        { value: 'judah' as const, label: 'Royaume du Sud' },
+        { value: 'postexilic' as const, label: 'Post-Exiliques' },
+      ]
+    } else {
+      return [
+        { value: 'all' as const, label: 'Tous' },
+      ]
+    }
+  }
 
   const countOptions: Array<5 | 10 | 20> = [5, 10, 20]
 
+  const handleSubjectTypeChange = (newType: QuizSubjectType) => {
+    setSubjectType(newType)
+    setCategory('all')
+  }
+
   const handleStart = () => {
-    const generatedQuestions = generateQuiz({ category, questionCount })
+    const generatedQuestions = generateUnifiedQuiz({ subjectType, category, questionCount })
     setQuestions(generatedQuestions)
     setStage('quiz')
   }
 
   const handleComplete = () => {
-    recordScore(`global-${category}-${questionCount}`, quiz.score, quiz.totalQuestions)
+    recordScore(`global-${subjectType}-${category}-${questionCount}`, quiz.score, quiz.totalQuestions)
     setStage('results')
   }
 
@@ -63,9 +91,28 @@ export default function QuizFlow() {
             animate={{ opacity: 1, y: 0 }}
           >
             <div className="mb-8">
+              <h2 className="font-cinzel text-xl mb-4">Sujet</h2>
+              <div className="flex flex-wrap gap-3">
+                {subjectTypeOptions.map((opt) => (
+                  <button
+                    key={opt.value}
+                    onClick={() => handleSubjectTypeChange(opt.value)}
+                    className={`px-5 py-3 min-h-[44px] rounded-full font-medium transition-colors ${
+                      subjectType === opt.value
+                        ? 'bg-gold text-white'
+                        : 'bg-parchment-200 hover:bg-parchment-300'
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="mb-8">
               <h2 className="font-cinzel text-xl mb-4">Catégorie</h2>
               <div className="flex flex-wrap gap-3">
-                {categoryOptions.map((opt) => (
+                {getCategoryOptions().map((opt) => (
                   <button
                     key={opt.value}
                     onClick={() => setCategory(opt.value)}
@@ -228,7 +275,7 @@ export default function QuizFlow() {
   const percentage = Math.round((quiz.score / quiz.totalQuestions) * 100)
   const circumference = 2 * Math.PI * 80
   const strokeDashoffset = circumference - (percentage / 100) * circumference
-  const previousBest = quizScores[`global-${category}-${questionCount}`]
+  const previousBest = quizScores[`global-${subjectType}-${category}-${questionCount}`]
 
   return (
     <div className="min-h-dvh bg-parchment-900 text-white py-8 px-4" style={{ paddingTop: 'max(2rem, env(safe-area-inset-top))', paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}>
