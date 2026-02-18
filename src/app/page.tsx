@@ -20,10 +20,11 @@ export default function Home() {
       return false;
     }
 
-    // Search filter
+    // Search filter (case + accent insensitive)
     if (searchQuery.trim() !== '') {
-      const query = searchQuery.toLowerCase();
-      const nameMatch = king.name.toLowerCase().includes(query);
+      const normalize = (s: string) =>
+        s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+      const nameMatch = normalize(king.name).includes(normalize(searchQuery));
       return nameMatch;
     }
 
