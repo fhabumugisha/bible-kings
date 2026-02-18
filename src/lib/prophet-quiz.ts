@@ -27,7 +27,7 @@ function generateIdentificationQuestion(
   prophet: Prophet,
   prophetPool: Prophet[],
   questionId: string
-): QuizQuestion {
+): QuizQuestion | null {
   const fact = pickRandom(prophet.keyFacts, 1)[0];
 
   // Get distractors: prefer same era, exclude prophets with identical fact text
@@ -51,6 +51,8 @@ function generateIdentificationQuestion(
           ...sameEra,
           ...pickRandom(otherEra, 3 - sameEra.length),
         ];
+
+  if (distractorProphets.length < 3) return null;
 
   const options = shuffleArray([prophet.name, ...distractorProphets.map((p) => p.name)]);
   const correctIndex = options.indexOf(prophet.name);
@@ -77,7 +79,7 @@ function generateProphetFactsQuestion(
   prophet: Prophet,
   prophetPool: Prophet[],
   questionId: string
-): QuizQuestion {
+): QuizQuestion | null {
   const fact = pickRandom(prophet.keyFacts, 1)[0];
 
   // Get distractors: prefer same FactCategory
@@ -95,6 +97,8 @@ function generateProphetFactsQuestion(
           ...pickRandom(sameCategory, Math.min(sameCategory.length, 3)),
           ...pickRandom(otherCategory, 3 - Math.min(sameCategory.length, 3)),
         ];
+
+  if (distractorFacts.length < 3) return null;
 
   const options = shuffleArray([
     `${fact.emoji} ${fact.text}`,
@@ -147,6 +151,8 @@ function generateKingAssociationQuestion(
           ),
         ]
       : pickRandom(allOtherKings, 3);
+
+  if (distractors.length < 3) return null;
 
   const options = shuffleArray([correctKing, ...distractors]);
   const correctIndex = options.indexOf(correctKing);
@@ -283,12 +289,12 @@ export function generateProphetCardQuiz(prophetId: string): QuizQuestion[] {
   questions.push(generateImpactQuestion(prophet, `q-card-${questions.length + 1}`));
 
   // Type 1 (identification)
-  questions.push(
-    generateIdentificationQuestion(prophet, PROPHETS, `q-card-${questions.length + 1}`)
-  );
+  const identQ = generateIdentificationQuestion(prophet, PROPHETS, `q-card-${questions.length + 1}`);
+  if (identQ) questions.push(identQ);
 
   // Type 2 (facts)
-  questions.push(generateProphetFactsQuestion(prophet, PROPHETS, `q-card-${questions.length + 1}`));
+  const factsQ = generateProphetFactsQuestion(prophet, PROPHETS, `q-card-${questions.length + 1}`);
+  if (factsQ) questions.push(factsQ);
 
   // Type 3 (king association) - only if prophet has contemporary kings
   if (prophet.contemporaryKings.length > 0) {

@@ -9,8 +9,12 @@ export function generateUnifiedQuiz(config: {
   questionCount: 5 | 10 | 20;
 }): QuizQuestion[] {
   if (config.subjectType === "rois") {
+    const validKingCategories = ["united", "israel", "judah", "all"];
+    const category = validKingCategories.includes(config.category)
+      ? (config.category as "united" | "israel" | "judah" | "all")
+      : "all";
     return generateKingQuiz({
-      category: config.category as "united" | "israel" | "judah" | "all",
+      category,
       questionCount: config.questionCount,
     });
   }
