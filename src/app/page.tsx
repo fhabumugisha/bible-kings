@@ -10,9 +10,6 @@ import { KINGS, ERAS } from '@/data/kings';
 
 export default function Home() {
   const [selectedEra, setSelectedEra] = useState<Kingdom | 'all'>('all');
-  const [selectedFaithfulness, setSelectedFaithfulness] = useState<
-    'all' | 'faithful' | 'unfaithful'
-  >('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [quizKingId, setQuizKingId] = useState<string | null>(null);
 
@@ -20,14 +17,6 @@ export default function Home() {
   const filteredKings = KINGS.filter((king) => {
     // Era filter
     if (selectedEra !== 'all' && king.kingdom !== selectedEra) {
-      return false;
-    }
-
-    // Faithfulness filter
-    if (selectedFaithfulness === 'faithful' && king.faithfulness < 4) {
-      return false;
-    }
-    if (selectedFaithfulness === 'unfaithful' && king.faithfulness > 2) {
       return false;
     }
 
@@ -46,10 +35,8 @@ export default function Home() {
       <Hero />
       <FilterBar
         selectedEra={selectedEra}
-        selectedFaithfulness={selectedFaithfulness}
         searchQuery={searchQuery}
         onEraChange={setSelectedEra}
-        onFaithfulnessChange={setSelectedFaithfulness}
         onSearchChange={setSearchQuery}
       />
       <div id="card-grid">

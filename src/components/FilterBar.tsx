@@ -5,19 +5,15 @@ import type { Kingdom } from '@/types';
 
 interface FilterBarProps {
   selectedEra: Kingdom | 'all';
-  selectedFaithfulness: 'all' | 'faithful' | 'unfaithful';
   searchQuery: string;
   onEraChange: (era: Kingdom | 'all') => void;
-  onFaithfulnessChange: (f: 'all' | 'faithful' | 'unfaithful') => void;
   onSearchChange: (query: string) => void;
 }
 
 export default function FilterBar({
   selectedEra,
-  selectedFaithfulness,
   searchQuery,
   onEraChange,
-  onFaithfulnessChange,
   onSearchChange,
 }: FilterBarProps) {
   const eraButtons = [
@@ -25,12 +21,6 @@ export default function FilterBar({
     { id: 'united' as const, label: 'Monarchie Unie' },
     { id: 'israel' as const, label: 'Israël (Nord)' },
     { id: 'judah' as const, label: 'Juda (Sud)' },
-  ];
-
-  const faithfulnessButtons = [
-    { id: 'all' as const, label: 'Tous' },
-    { id: 'faithful' as const, label: 'Fidèles (4+)' },
-    { id: 'unfaithful' as const, label: 'Infidèles (≤2)' },
   ];
 
   const eraColor = (id: string, active: boolean) => {
@@ -46,38 +36,17 @@ export default function FilterBar({
     <div className="sticky top-0 z-30 bg-parchment-50/80 backdrop-blur-md border-b border-parchment-200">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="flex flex-col sm:flex-row sm:items-center gap-3 py-3">
-          {/* Era pills */}
-          <div className="flex items-center gap-1">
+          {/* Era pills — horizontal scroll on mobile */}
+          <div className="flex items-center gap-1 overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 sm:overflow-visible scrollbar-none">
             {eraButtons.map((btn) => (
               <button
                 key={btn.id}
                 onClick={() => onEraChange(btn.id)}
                 aria-pressed={selectedEra === btn.id}
-                className={`px-3 py-1.5 rounded-md font-inter font-medium text-sm transition-all ${eraColor(
+                className={`px-3 py-2.5 min-h-[44px] rounded-md font-inter font-medium text-sm transition-all whitespace-nowrap shrink-0 ${eraColor(
                   btn.id,
                   selectedEra === btn.id
                 )}`}
-              >
-                {btn.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Divider */}
-          <div className="hidden sm:block w-px h-5 bg-parchment-300" />
-
-          {/* Faithfulness pills */}
-          <div className="flex items-center gap-1">
-            {faithfulnessButtons.map((btn) => (
-              <button
-                key={btn.id}
-                onClick={() => onFaithfulnessChange(btn.id)}
-                aria-pressed={selectedFaithfulness === btn.id}
-                className={`px-3 py-1.5 rounded-md font-inter font-medium text-sm transition-all ${
-                  selectedFaithfulness === btn.id
-                    ? 'bg-gold/15 text-gold font-semibold'
-                    : 'text-parchment-900/70 hover:text-parchment-900 hover:bg-parchment-200/60'
-                }`}
               >
                 {btn.label}
               </button>
@@ -93,7 +62,7 @@ export default function FilterBar({
               placeholder="Rechercher..."
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              className="w-full sm:w-52 pl-9 pr-3 py-1.5 rounded-md border border-parchment-300/80 bg-white/60 text-sm text-parchment-900 font-inter placeholder:text-parchment-900/40 focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold/50 transition-all"
+              className="w-full sm:w-52 pl-9 pr-3 py-2.5 min-h-[44px] rounded-md border border-parchment-300/80 bg-white/60 text-sm text-parchment-900 font-inter placeholder:text-parchment-900/40 focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold/50 transition-all"
             />
           </div>
         </div>
