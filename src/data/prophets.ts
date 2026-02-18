@@ -36,6 +36,15 @@ export const PROPHET_ERAS: ProphetEra[] = [
     color: "era-postexilic",
     prophetCount: 3,
   },
+  {
+    id: "fulfillment",
+    label: "Accomplissement",
+    description:
+      "Le précurseur et le Prophète ultime — accomplissement de toutes les promesses",
+    dates: "~6 av. J.-C. – 30 ap. J.-C.",
+    color: "era-fulfillment",
+    prophetCount: 2,
+  },
 ];
 
 export const PROPHETS: Prophet[] = [
@@ -1165,6 +1174,103 @@ export const PROPHETS: Prophet[] = [
     imagePath: "/images/prophets/malachie.png",
     imagePrompt:
       "3D Pixar-style biblical prophet portrait, stern final prophet figure, Middle Eastern features, simple priestly robes in dark indigo and cream, holding an open scroll as if reading God's accusation, no crown, cinematic warm golden lighting with twilight undertones suggesting end of an era, soft depth of field, ancient rebuilt Jerusalem Temple with quiet empty courtyard background blurred, expressive face reflecting righteous frustration and hope for the coming dawn, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits",
+  },
+  // ERA 5 — ACCOMPLISSEMENT
+  {
+    id: "jean-baptiste",
+    name: "Jean-Baptiste",
+    number: 24,
+    era: "fulfillment",
+    biblicalReference: "Matthieu 3 ; 11 ; 14 ; Luc 1 ; 3 ; Jean 1",
+    ministryDuration: "~2 ans",
+    ministryYears: "~27–29 ap. J.-C.",
+    kingdom: "Judée sous domination romaine",
+    contemporaryKings: [],
+    specialty:
+      "Précurseur du Messie — pont entre AT et NT, dernier prophète de l'ancienne alliance",
+    impact: 5,
+    keyFacts: [
+      {
+        emoji: "👶",
+        text: "Naissance miraculeuse annoncée par l'ange Gabriel à Zacharie dans le Temple",
+        category: "identity",
+      },
+      {
+        emoji: "🏜️",
+        text: "Vit dans le désert, vêtu de poils de chameau, mange des sauterelles et du miel",
+        category: "identity",
+      },
+      {
+        emoji: "💧",
+        text: "Baptise dans le Jourdain — y compris Jésus lui-même",
+        category: "achievement",
+      },
+      {
+        emoji: "🔥",
+        text: "Annonce celui qui baptisera du Saint-Esprit et de feu",
+        category: "prophet",
+      },
+      {
+        emoji: "⚔️",
+        text: "Décapité par Hérode Antipas pour avoir dénoncé son mariage illégitime",
+        category: "death",
+      },
+    ],
+    explanation:
+      "Jean-Baptiste est le pont entre l'Ancien et le Nouveau Testament. Fils du sacrificateur Zacharie, sa naissance est annoncée par l'ange Gabriel. Il vit dans le désert, vêtu de poils de chameau, et prêche un baptême de repentance. Jésus dit de lui : « Parmi ceux qui sont nés de femmes, il n'en a point paru de plus grand » (Matthieu 11:11). Il est l'Élie annoncé par Malachie, celui qui prépare le chemin du Seigneur.",
+    lesson:
+      "La fidélité à la vérité peut coûter la vie, mais elle prépare le chemin de Dieu.",
+    imagePath: "/images/prophets/jean-baptiste.png",
+    imagePrompt:
+      "3D Pixar-style biblical prophet portrait, wild ascetic prophet in the desert, Middle Eastern features, rough camel-hair garment with leather belt around waist, intense burning eyes and unkempt dark beard, no crown, cinematic warm golden lighting with harsh desert sun, soft depth of field, ancient Jordan River with rocky desert landscape background blurred, expressive face reflecting fierce conviction and burning urgency to prepare the way, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits",
+  },
+  {
+    id: "jesus",
+    name: "Jésus",
+    number: 25,
+    era: "fulfillment",
+    biblicalReference: "Les 4 Évangiles (Matthieu, Marc, Luc, Jean)",
+    ministryDuration: "~3 ans",
+    ministryYears: "~27–30 ap. J.-C.",
+    kingdom: "Judée/Galilée sous domination romaine",
+    contemporaryKings: [],
+    specialty:
+      "Le Prophète ultime — Parole de Dieu incarnée, accomplissement de toutes les prophéties",
+    impact: 5,
+    keyFacts: [
+      {
+        emoji: "⭐",
+        text: "Naissance miraculeuse à Bethléem, accomplissant la prophétie de Michée 5:1",
+        category: "identity",
+      },
+      {
+        emoji: "📖",
+        text: "Enseigne avec une autorité unique — « Jamais homme n'a parlé comme cet homme » (Jean 7:46)",
+        category: "achievement",
+      },
+      {
+        emoji: "✨",
+        text: "Accomplit des miracles sans précédent : guérisons, résurrections, autorité sur la nature",
+        category: "achievement",
+      },
+      {
+        emoji: "✝️",
+        text: "Crucifié et ressuscité le 3e jour — accomplissant Ésaïe 53 et Psaume 16",
+        category: "death",
+      },
+      {
+        emoji: "👑",
+        text: "Le prophète qui est aussi Roi et Sacrificateur — triple office messianique",
+        category: "identity",
+      },
+    ],
+    explanation:
+      "Jésus est le prophète annoncé par Moïse dans Deutéronome 18:15 — « un prophète comme moi ». Mais il est infiniment plus qu'un prophète : il est la Parole de Dieu faite chair (Jean 1:14). Il enseigne avec une autorité que personne n'avait jamais vue, accomplit des miracles sans précédent, et accomplit en sa personne toutes les prophéties de l'AT. Il est prophète (il révèle Dieu), sacrificateur (il s'offre lui-même) et roi (il règnera éternellement).",
+    lesson:
+      "Dieu n'a pas seulement envoyé des messagers — il est venu lui-même.",
+    imagePath: "/images/prophets/jesus.png",
+    imagePrompt:
+      "3D Pixar-style biblical prophet portrait, young Jewish man from 1st-century Galilee, olive-brown skin tone, short wavy dark brown hair, short dark brown beard, deep warm brown eyes, sturdy carpenter build, simple white and cream linen robes with subtle blue-purple tallit, no crown but divine light subtly emanating, cinematic warm golden lighting with soft ethereal glow, soft depth of field, ancient Galilean hillside with crowd gathered background blurred, expressive face reflecting perfect peace and boundless compassion and quiet authority, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits",
   },
 ];
 

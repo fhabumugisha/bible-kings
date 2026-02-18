@@ -732,17 +732,84 @@ Servir Dieu à moitié, c'est ne pas le servir du tout.
 ---
 
 # ═══════════════════════════════════════
+# ✝️ ÈRE 5 — ACCOMPLISSEMENT (~6 av. J.-C. – 30 ap. J.-C.)
+# ═══════════════════════════════════════
+
+---
+
+# 🕊️ 24. JEAN-BAPTISTE
+
+📖 Matthieu 3 ; 11 ; 14 ; Luc 1 ; 3 ; Jean 1
+⏳ Ministère : ~2 ans (~27–29 ap. J.-C.)
+🏛️ Royaume : Judée sous domination romaine
+👑 Aucun roi d'Israël (tétrarque Hérode Antipas)
+🔥 Spécialité : Précurseur du Messie — pont entre AT et NT, dernier prophète de l'ancienne alliance
+
+⭐ **Impact spirituel : ⭐⭐⭐⭐⭐**
+
+📘 **Explication :**
+Jean-Baptiste est le pont entre l'Ancien et le Nouveau Testament. Fils du sacrificateur Zacharie, sa naissance est annoncée par l'ange Gabriel. Il vit dans le désert, vêtu de poils de chameau, et prêche un baptême de repentance. Jésus dit de lui : « Parmi ceux qui sont nés de femmes, il n'en a point paru de plus grand » (Matthieu 11:11). Il est l'Élie annoncé par Malachie, celui qui prépare le chemin du Seigneur.
+
+🎯 **Leçon :**
+La fidélité à la vérité peut coûter la vie, mais elle prépare le chemin de Dieu.
+
+📌 **Faits marquants :**
+
+* 👶 Naissance miraculeuse annoncée par l'ange Gabriel à Zacharie dans le Temple
+* 🏜️ Vit dans le désert, vêtu de poils de chameau, mange des sauterelles et du miel
+* 💧 Baptise dans le Jourdain — y compris Jésus lui-même
+* 🔥 Annonce celui qui baptisera du Saint-Esprit et de feu
+* ⚔️ Décapité par Hérode Antipas pour avoir dénoncé son mariage illégitime
+
+🎨 **Prompt :**
+
+> 3D Pixar-style biblical prophet portrait, wild ascetic prophet in the desert, Middle Eastern features, rough camel-hair garment with leather belt around waist, intense burning eyes and unkempt dark beard, no crown, cinematic warm golden lighting with harsh desert sun, soft depth of field, ancient Jordan River with rocky desert landscape background blurred, expressive face reflecting fierce conviction and burning urgency to prepare the way, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits
+
+---
+
+# 🕊️ 25. JÉSUS
+
+📖 Les 4 Évangiles (Matthieu, Marc, Luc, Jean)
+⏳ Ministère : ~3 ans (~27–30 ap. J.-C.)
+🏛️ Royaume : Judée/Galilée sous domination romaine
+👑 Aucun roi d'Israël (descendant du roi David, « Roi des rois »)
+🔥 Spécialité : Le Prophète ultime — Parole de Dieu incarnée, accomplissement de toutes les prophéties
+
+⭐ **Impact spirituel : ⭐⭐⭐⭐⭐**
+
+📘 **Explication :**
+Jésus est le prophète annoncé par Moïse dans Deutéronome 18:15 — « un prophète comme moi ». Mais il est infiniment plus qu'un prophète : il est la Parole de Dieu faite chair (Jean 1:14). Il enseigne avec une autorité que personne n'avait jamais vue, accomplit des miracles sans précédent, et accomplit en sa personne toutes les prophéties de l'AT. Il est prophète (il révèle Dieu), sacrificateur (il s'offre lui-même) et roi (il règnera éternellement).
+
+🎯 **Leçon :**
+Dieu n'a pas seulement envoyé des messagers — il est venu lui-même.
+
+📌 **Faits marquants :**
+
+* ⭐ Naissance miraculeuse à Bethléem, accomplissant la prophétie de Michée 5:1
+* 📖 Enseigne avec une autorité unique — « Jamais homme n'a parlé comme cet homme » (Jean 7:46)
+* ✨ Accomplit des miracles sans précédent : guérisons, résurrections, autorité sur la nature
+* ✝️ Crucifié et ressuscité le 3e jour — accomplissant Ésaïe 53 et Psaume 16
+* 👑 Le prophète qui est aussi Roi et Sacrificateur — triple office messianique
+
+🎨 **Prompt :**
+
+> 3D Pixar-style biblical prophet portrait, young Jewish man from 1st-century Galilee, olive-brown skin tone, short wavy dark brown hair, short dark brown beard, deep warm brown eyes, sturdy carpenter build, simple white and cream linen robes with subtle blue-purple tallit, no crown but divine light subtly emanating, cinematic warm golden lighting with soft ethereal glow, soft depth of field, ancient Galilean hillside with crowd gathered background blurred, expressive face reflecting perfect peace and boundless compassion and quiet authority, highly detailed fabric textures, dramatic but family-friendly Disney-style realism, centered composition, medium close-up shot, epic animated movie quality, consistent character series, same cinematic universe, unified lighting and artistic direction across all portraits
+
+---
+
+# ═══════════════════════════════════════
 # 📊 STATISTIQUES RÉCAPITULATIVES
 # ═══════════════════════════════════════
 
 | Métrique | Valeur |
 |----------|--------|
-| Nombre total de prophètes | 23 |
+| Nombre total de prophètes | 25 |
 | Ère 1 — Monarchie Unie | 4 (Samuel, Nathan, Gad, Ahija) |
 | Ère 2 — Royaume du Nord | 7 (Jéhu fils de Hanani, Élie, Élisée, Jonas, Amos, Osée, Abdias) |
 | Ère 3 — Royaume du Sud | 9 (Joël, Ésaïe, Michée, Nahum, Habakuk, Sophonie, Jérémie, Ézéchiel, Daniel) |
 | Ère 4 — Post-Exiliques | 3 (Aggée, Zacharie, Malachie) |
-| Impact ⭐⭐⭐⭐⭐ (majeur) | 4 (Élie, Ésaïe, Jérémie, Daniel) |
+| Ère 5 — Accomplissement | 2 (Jean-Baptiste, Jésus) |
+| Impact ⭐⭐⭐⭐⭐ (majeur) | 6 (Élie, Ésaïe, Jérémie, Daniel, Jean-Baptiste, Jésus) |
 | Impact ⭐⭐⭐⭐☆ (important) | 4 (Samuel, Élisée, Amos, Osée, Ézéchiel) |
 | Impact ⭐⭐⭐☆☆ (notable) | 5 (Nathan, Jonas, Joël, Michée, Zacharie, Malachie) |
 | Impact ⭐⭐☆☆☆ (significatif) | 5 (Gad, Nahum, Habakuk, Sophonie, Aggée) |
@@ -785,3 +852,5 @@ Servir Dieu à moitié, c'est ne pas le servir du tout.
 | Aggée | Aucun roi (retour d'exil, gouverneur Zorobabel) |
 | Zacharie | Aucun roi (retour d'exil, gouverneur Zorobabel) |
 | Malachie | Aucun roi (domination perse, gouverneur Néhémie) |
+| Jean-Baptiste | Aucun roi d'Israël (tétrarque Hérode Antipas) |
+| Jésus | Aucun roi d'Israël (descendant du roi David, « Roi des rois ») |
