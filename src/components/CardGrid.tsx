@@ -93,21 +93,21 @@ export default function CardGrid({ kings, eras, onQuizClick }: CardGridProps) {
               {/* Grid of Cards — mobile: 1 col centered, no col-span-2 */}
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8 xl:grid-cols-4 xl:gap-8">
                 {eraKings.map((king) => (
-                  <div
-                    key={king.id}
-                    id={king.id}
-                    className="flex justify-center max-w-[320px] mx-auto sm:max-w-none w-full"
-                    style={{ scrollMarginTop: '80px' }}
-                  >
-                    <KingCard
-                      king={king}
-                      onQuizClick={() => onQuizClick(king.id)}
-                      onParallelKingClick={handleParallelKingClick}
-                      onViewDetailsClick={() => router.push(`/kings/${king.id}`)}
-                      lazy={!isFirstEra}
-                    />
-                  </div>
-                ))}
+                    <div
+                      key={king.id}
+                      id={king.id}
+                      className="flex justify-center max-w-[320px] mx-auto sm:max-w-none w-full"
+                      style={{ scrollMarginTop: '80px' }}
+                    >
+                      <KingCard
+                        king={king}
+                        onQuizClick={() => onQuizClick(king.id)}
+                        onParallelKingClick={handleParallelKingClick}
+                        onViewDetailsClick={() => router.push(`/kings/${king.id}`)}
+                        lazy={!isFirstEra}
+                      />
+                    </div>
+                  ))}
               </div>
             </div>
           </section>

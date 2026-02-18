@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useEffect, useMemo } from 'react'
-import { motion, useReducedMotion } from 'motion/react'
+import { useState, useEffect, useMemo, useRef } from 'react'
+import { motion, useReducedMotion, useInView } from 'motion/react'
 import type { King } from '@/types'
 import { useProgressStore } from '@/stores/useProgressStore'
 import CardFront from './CardFront'
@@ -21,6 +21,9 @@ export default function KingCard({ king, onQuizClick, onParallelKingClick, onVie
   const markViewed = useProgressStore((state) => state.markViewed)
   const isViewed = kingsViewed.includes(king.id)
   const reducedMotion = useReducedMotion()
+
+  const entranceRef = useRef<HTMLDivElement>(null)
+  const isInView = useInView(entranceRef, { once: true, margin: '-50px' })
 
   useEffect(() => {
     if (isFlipped && !isViewed) {
@@ -47,7 +50,11 @@ export default function KingCard({ king, onQuizClick, onParallelKingClick, onVie
     : { type: 'spring' as const, stiffness: 300, damping: 40 }
 
   return (
-    <div
+    <motion.div
+      ref={entranceRef}
+      initial={reducedMotion ? false : { opacity: 0, y: 24 }}
+      animate={isInView ? { opacity: 1, y: 0 } : undefined}
+      transition={{ duration: 0.5 }}
       style={{ perspective: '800px' }}
       className="mx-auto w-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
       onClick={handleToggleFlip}
@@ -102,6 +109,6 @@ export default function KingCard({ king, onQuizClick, onParallelKingClick, onVie
           />
         </motion.div>
       </motion.div>
-    </div>
+    </motion.div>
   )
 }
