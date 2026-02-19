@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'motion/react'
 import Link from 'next/link'
-import type { Kingdom, QuizQuestion, QuizSubjectType, ProphetEraId } from '@/types'
+import type { QuizQuestion, QuizSubjectType } from '@/types'
 import { generateUnifiedQuiz } from '@/lib/unified-quiz'
 import { useQuiz } from '@/hooks/useQuiz'
 import { useProgressStore } from '@/stores/useProgressStore'
@@ -76,14 +76,9 @@ export default function QuizFlow() {
   // Config Stage
   if (stage === 'config') {
     return (
-      <div className="min-h-dvh bg-parchment-900 text-white py-8 px-4" style={{ paddingTop: 'max(2rem, env(safe-area-inset-top))', paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}>
+      <div className="min-h-dvh bg-parchment-900 text-white py-8 px-4" style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}>
         <div className="max-w-2xl mx-auto">
-          <div className="flex items-center justify-between mb-8">
-            <h1 className="font-cinzel text-3xl">👑 Quiz</h1>
-            <Link href="/" className="text-gold hover:text-gold-light transition-colors min-h-[44px] flex items-center">
-              Retour
-            </Link>
-          </div>
+          <h1 className="font-cinzel text-3xl mb-8">👑 Quiz</h1>
 
           <motion.div
             className="bg-parchment-100 rounded-2xl p-6 sm:p-8 text-parchment-900"
@@ -164,14 +159,9 @@ export default function QuizFlow() {
     const progressPercent = ((quiz.currentIndex + (quiz.isAnswered ? 1 : 0)) / quiz.totalQuestions) * 100
 
     return (
-      <div className="min-h-dvh bg-parchment-900 text-white py-8 px-4" style={{ paddingTop: 'max(2rem, env(safe-area-inset-top))', paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}>
+      <div className="min-h-dvh bg-parchment-900 text-white py-8 px-4" style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}>
         <div className="max-w-2xl mx-auto">
-          <div className="flex items-center justify-between mb-8">
-            <h1 className="font-cinzel text-3xl">👑 Quiz</h1>
-            <Link href="/" className="text-gold hover:text-gold-light transition-colors min-h-[44px] flex items-center">
-              Retour
-            </Link>
-          </div>
+          <h1 className="font-cinzel text-3xl mb-8">👑 Quiz</h1>
 
           {/* Screen reader announcements */}
           <div aria-live="polite" className="sr-only">
@@ -278,14 +268,9 @@ export default function QuizFlow() {
   const previousBest = quizScores[`global-${subjectType}-${category}-${questionCount}`]
 
   return (
-    <div className="min-h-dvh bg-parchment-900 text-white py-8 px-4" style={{ paddingTop: 'max(2rem, env(safe-area-inset-top))', paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}>
+    <div className="min-h-dvh bg-parchment-900 text-white py-8 px-4" style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}>
       <div className="max-w-2xl mx-auto">
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="font-cinzel text-3xl">👑 Quiz</h1>
-          <Link href="/" className="text-gold hover:text-gold-light transition-colors min-h-[44px] flex items-center">
-            Retour
-          </Link>
-        </div>
+        <h1 className="font-cinzel text-3xl mb-8">👑 Quiz</h1>
 
         <motion.div
           className="bg-parchment-100 rounded-2xl p-6 sm:p-8 text-parchment-900"
