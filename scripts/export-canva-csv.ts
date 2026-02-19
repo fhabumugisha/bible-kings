@@ -73,7 +73,8 @@ const KING_HEADERS = [
   "fait5",
   "explication",
   "lecon",
-  "image",
+  "image_front",
+  "image_back",
 ];
 
 const kingRows = KINGS.map((k) => {
@@ -97,7 +98,8 @@ const kingRows = KINGS.map((k) => {
     facts[4] ?? "",
     k.explanation,
     k.lesson,
-    k.imagePath,
+    `${String(k.number).padStart(2, "0")}-${k.id}-front.png`,
+    `${String(k.number).padStart(2, "0")}-${k.id}-back.png`,
   ];
 });
 
@@ -123,7 +125,8 @@ const PROPHET_HEADERS = [
   "fait5",
   "explication",
   "lecon",
-  "image",
+  "image_front",
+  "image_back",
 ];
 
 const prophetRows = PROPHETS.map((p) => {
@@ -148,7 +151,8 @@ const prophetRows = PROPHETS.map((p) => {
     facts[4] ?? "",
     p.explanation,
     p.lesson,
-    p.imagePath,
+    `${String(p.number).padStart(2, "0")}-${p.id}-front.png`,
+    `${String(p.number).padStart(2, "0")}-${p.id}-back.png`,
   ];
 });
 
@@ -165,5 +169,28 @@ writeFileSync(kingsPath, BOM + toCSV(KING_HEADERS, kingRows), "utf-8");
 const prophetsPath = resolve(outDir, "canva-prophets.csv");
 writeFileSync(prophetsPath, BOM + toCSV(PROPHET_HEADERS, prophetRows), "utf-8");
 
-console.log(`✅ Kings CSV:    ${kingsPath} (${KINGS.length} rows)`);
-console.log(`✅ Prophets CSV: ${prophetsPath} (${PROPHETS.length} rows)`);
+// Simple image-only CSVs for Canva bulk create (one column = folder image name)
+const kingImageRows = KINGS.flatMap((k) => {
+  const num = String(k.number).padStart(2, "0");
+  return [
+    [`${num}-${k.id}-front.png`],
+    [`${num}-${k.id}-back.png`],
+  ];
+});
+const kingsImgPath = resolve(outDir, "canva-kings-images.csv");
+writeFileSync(kingsImgPath, BOM + toCSV(["imagename"], kingImageRows), "utf-8");
+
+const prophetImageRows = PROPHETS.flatMap((p) => {
+  const num = String(p.number).padStart(2, "0");
+  return [
+    [`${num}-${p.id}-front.png`],
+    [`${num}-${p.id}-back.png`],
+  ];
+});
+const prophetsImgPath = resolve(outDir, "canva-prophets-images.csv");
+writeFileSync(prophetsImgPath, BOM + toCSV(["imagename"], prophetImageRows), "utf-8");
+
+console.log(`✅ Kings CSV:         ${kingsPath} (${KINGS.length} rows)`);
+console.log(`✅ Prophets CSV:      ${prophetsPath} (${PROPHETS.length} rows)`);
+console.log(`✅ Kings images CSV:  ${kingsImgPath} (${kingImageRows.length} rows)`);
+console.log(`✅ Prophets img CSV:  ${prophetsImgPath} (${prophetImageRows.length} rows)`);

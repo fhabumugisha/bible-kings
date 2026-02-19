@@ -437,7 +437,7 @@ export function prophetFrontHTML(prophet: Prophet): string {
       <img class="portrait" src="../public${prophet.imagePath}" alt="${escapeHtml(prophet.name)}" onerror="this.style.display='none'"/>
       <div class="bottom-overlay">
         <div class="king-name">🕊️ ${escapeHtml(prophet.name)}</div>
-        <div class="reign-text">~${escapeHtml(prophet.ministryDuration)}</div>
+        <div class="reign-text">${escapeHtml(prophet.ministryDuration)} de ministère</div>
       </div>
     </div>`;
 }
@@ -452,11 +452,11 @@ export function prophetBackHTML(prophet: Prophet): string {
       <div class="info-line"><span class="emoji">⏳</span><span>${escapeHtml(prophet.ministryDuration)} (${escapeHtml(prophet.ministryYears)})</span></div>`;
 
   if (prophet.contemporaryKings.length > 0) {
-    html += `<div class="info-line"><span class="emoji">👑</span><span>Rois : ${escapeHtml(prophet.contemporaryKings.join(", "))}</span></div>`;
+    html += `<div class="info-line"><span class="emoji">👑</span><span>Rois contemporains : ${escapeHtml(prophet.contemporaryKings.join(", "))}</span></div>`;
   }
 
   html += `
-      <div class="info-line"><span class="emoji">✨</span><span>${escapeHtml(prophet.specialty)}</span></div>
+      <div class="info-line"><span class="emoji">🕊️</span><span>${escapeHtml(prophet.specialty)}</span></div>
       <div class="rating-bar">${stars(prophet.impact)}<span class="label">${escapeHtml(impactLabel(prophet.impact))}</span></div>`;
 
   if (prophet.explanation) {

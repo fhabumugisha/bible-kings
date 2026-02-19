@@ -142,7 +142,8 @@ async function main() {
       ["front", kingFrontHTML(king)],
       ["back", kingBackHTML(king)],
     ] as const) {
-      const outPath = path.join(kingsDir, `${king.id}-${suffix}.png`);
+      const num = String(king.number).padStart(2, "0");
+      const outPath = path.join(kingsDir, `${num}-${king.id}-${suffix}.png`);
       await captureCard(page, html, outPath);
     }
   }
@@ -153,7 +154,8 @@ async function main() {
       ["front", prophetFrontHTML(prophet)],
       ["back", prophetBackHTML(prophet)],
     ] as const) {
-      const outPath = path.join(prophetsDir, `${prophet.id}-${suffix}.png`);
+      const num = String(prophet.number).padStart(2, "0");
+      const outPath = path.join(prophetsDir, `${num}-${prophet.id}-${suffix}.png`);
       await captureCard(page, html, outPath);
     }
   }
